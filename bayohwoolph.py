@@ -3,7 +3,10 @@ import asyncio
 import configparser
 import discord
 import os
+import logging
 from discord.ext import commands
+
+logging.basicConfig(level=logging.INFO)
 
 # Parse the config and stick in global "config" var
 config = configparser.ConfigParser()
