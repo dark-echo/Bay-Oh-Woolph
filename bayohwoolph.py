@@ -17,7 +17,7 @@ for inifile in [os.path.expanduser('~')+'/.bayohwoolph.ini','bayohwoolph.local.i
 MAIN = config['MAIN']
 
 description = '''Dark Echo's barkeep'''
-bot = commands.Bot(command_prefix='$', description=description)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or('$'), description=description)
 
 @bot.event
 @asyncio.coroutine
