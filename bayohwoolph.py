@@ -4,6 +4,7 @@ import configparser
 import discord
 import os
 import logging
+import utils
 from discord.ext import commands
 
 logging.basicConfig(level=logging.INFO)
@@ -26,5 +27,5 @@ def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-
+    
 bot.run(MAIN.get('login_token'))
