@@ -37,7 +37,7 @@ def on_ready():
     print('------')
 
 newcadetmsg = """
-**Welcome to Dark Echo, {0.mention}!**
+**Welcome to Dark Echo, {0}!**
 
 **<:echoBlue:230423421983522816> Here are the basic steps to get started with Dark Echo: <:echoBlue:230423421983522816>**
 
@@ -60,16 +60,56 @@ If you stay active with us for a couple of weeks and haven't heard about a promo
 @bot.command()
 @commands.has_role('Leadership')
 @asyncio.coroutine
-def newcadet(member : discord.Member):
+def newcadet( 
+    member1  : discord.Member = None, 
+    member2  : discord.Member = None, 
+    member3  : discord.Member = None, 
+    member4  : discord.Member = None, 
+    member5  : discord.Member = None, 
+    member6  : discord.Member = None, 
+    member7  : discord.Member = None, 
+    member8  : discord.Member = None, 
+    member9  : discord.Member = None, 
+    member10 : discord.Member = None, 
+    member11 : discord.Member = None, 
+    member12 : discord.Member = None, 
+    member13 : discord.Member = None, 
+    member14 : discord.Member = None, 
+    member15 : discord.Member = None, 
+    member16 : discord.Member = None, 
+    member17 : discord.Member = None, 
+    member18 : discord.Member = None, 
+    member19 : discord.Member = None, 
+    member20 : discord.Member = None ):
     """Give intro message to new cadet and assign them cadet role."""
     global bot
 
     yield from bot.type()
 
+    # pull all the arguments into an array
+    argmembers = [member1, member2, member3, member4, member5, member6, member7, member8, member9, member10, member11, member12, member13, member14, member15, member16, member17, member18, member19, member20 ]
+
+    # and then filter out the None/empty items, so that we have only an array of things actually mentioned
+    filter(None,argmembers)
+    members = [i for i in argmembers if i is not None]
+
+    # FIXME: make this a utilfunction.
+    # Turns an array of members into a nicely formatted list of mentions.
+    mentiontext = ''
+    if len(members) == 0:
+        mentiontext = 'Nobody'
+    elif len(members) == 1:
+        mentiontext = members[0].mention
+    elif len(members) > 1:
+        mentions = [i.mention for i in members]
+        mentiontext = ', '.join(mentions[:-1])
+        mentiontext = mentiontext + ' and ' + mentions[-1]
+
+    yield from bot.say(newcadetmsg.format(mentiontext))
+
     cadetrole = discord.Object(id=146725461727117314)
-    yield from bot.add_roles(member,cadetrole)
-
-    yield from bot.say(newcadetmsg.format(member))
-
+    
+    for member in members:
+        yield from bot.add_roles(member,cadetrole)
     
 bot.run(MAIN.get('login_token'))
