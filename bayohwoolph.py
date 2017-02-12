@@ -37,18 +37,18 @@ def on_ready():
     print('------')
 
 newcadetmsg = """
-Welcome to Dark Echo, {0.mention}!
+**Welcome to Dark Echo, {0.mention}!**
 
-:echoBlue: Here are the basic steps to get started with Dark Echo: :echoBlue: 
+**<:echoBlue:230423421983522816> Here are the basic steps to get started with Dark Echo: <:echoBlue:230423421983522816>**
 
-1. Sign up for a forum account at http://darkecho.org/forums/ucp.php?mode=register
+1. Sign up for a forum account at <http://darkecho.org/forums/ucp.php?mode=register>
 2. If you use Inara, join us at http://inara.cz/wing/300
 3. In the game, under "Friends and Private Groups", request membership in the "Dark Echo" private group and send "Dark Echo" a friend request.
 4. Send in-game friend requests to the Echoes you see currently active on Discord and/or via in the in-game private group.
 5. Move your primary base of operations (any additional ships, etc) to Snodgrass Orbital in Disci.
 6. Once your forum account is activated, look for "Getting Started" instructions there.
 
-Note: You cannot get to Disci in a starter sidewinder. You need a ship with at least a 9.5LY jump range. If you can't plot a route directly, try plotting a route to Wolf 412 and then plotting a route from there. If you can upgrade most components from "E" to "D" rated in a Sidewinder or Eagle, you should be able to make it. Or a stock Hauler can make it. If you're still having trouble, talk to us on Discord and I'm sure somebody will be willing to help you out.
+Note: You cannot get to Disci in a starter sidewinder.  You need a ship with at least a 9.5LY jump range.  Upgrade most components from "E" to "D" rated in a Sidewinder or Eagle or use a Hauler to make it. If you're still having trouble, talk to us and somebody can help.
 
 Make sure you get that forum account set up, since that's what we use to track how long you've been a Cadet.
 
