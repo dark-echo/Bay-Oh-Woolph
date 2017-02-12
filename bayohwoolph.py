@@ -8,7 +8,7 @@ import logging
 from discord.ext import commands
 
 # Our specific stuff
-import utils
+from utils import *
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -95,15 +95,7 @@ def newcadet(
 
     # FIXME: make this a utilfunction.
     # Turns an array of members into a nicely formatted list of mentions.
-    mentiontext = ''
-    if len(members) == 0:
-        mentiontext = 'Nobody'
-    elif len(members) == 1:
-        mentiontext = members[0].mention
-    elif len(members) > 1:
-        mentions = [i.mention for i in members]
-        mentiontext = ', '.join(mentions[:-1])
-        mentiontext = mentiontext + ' and ' + mentions[-1]
+    mentiontext = memberlist_to_mentionlist(members)
 
     yield from bot.say(newcadetmsg.format(mentiontext))
 
