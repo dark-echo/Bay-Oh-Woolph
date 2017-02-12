@@ -63,7 +63,12 @@ If you stay active with us for a couple of weeks and haven't heard about a promo
 def newcadet(member : discord.Member):
     """Give intro message to new cadet and assign them cadet role."""
     global bot
+
     yield from bot.type()
+
+    cadetrole = discord.Object(id=146725461727117314)
+    yield from bot.add_roles(member,cadetrole)
+
     yield from bot.say(newcadetmsg.format(member))
 
     
