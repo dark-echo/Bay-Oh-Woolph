@@ -108,7 +108,19 @@ def newcadet(
     for member in members:
         yield from bot.add_roles(member,cadetrole) 
 
-@bot.command()
+
+=======
+>>>>>>> 2361fc964518b86f39f4a3664741f9e8f4294ce8
+    
+if __name__ == '__main__':
+    for extension in initial_extensions:
+        try:
+            bot.load_extension(extension)
+        except Exception as e:
+            print('Failed to load extension {}\n{}: {}'.format(extension, type(e).__name__, e))
+
+
+bot.command()
 @asyncio.coroutine
 #Test method to populate an array from discord -Infinite
 def getmembers():
@@ -126,14 +138,6 @@ def getmembers():
 
     yield from bot.say(str(sentence))
     yield from bot.say("NumberofMembersinArray: "+str(length))
-=======
->>>>>>> 2361fc964518b86f39f4a3664741f9e8f4294ce8
-    
-if __name__ == '__main__':
-    for extension in initial_extensions:
-        try:
-            bot.load_extension(extension)
-        except Exception as e:
-            print('Failed to load extension {}\n{}: {}'.format(extension, type(e).__name__, e))
+
 
     bot.run(MAIN.get('login_token'))
