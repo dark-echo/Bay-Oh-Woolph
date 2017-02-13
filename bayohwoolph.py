@@ -25,7 +25,7 @@ MAIN = config['MAIN']
 
 description = '''Dark Echo's barkeep'''
 global bot
-bot = commands.Bot(command_prefix=commands.when_mentioned_or('$'), description=description)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN['commandchar']), description=description)
 
 
 @bot.event
