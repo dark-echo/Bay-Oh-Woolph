@@ -106,6 +106,25 @@ def newcadet(
     cadetrole = discord.Object(id=146725461727117314)
     
     for member in members:
-        yield from bot.add_roles(member,cadetrole)
+        yield from bot.add_roles(member,cadetrole) 
+
+@bot.command()
+@asyncio.coroutine
+#Test method to populate an array from discord -Infinite
+def getmembers():
+    #Intialize array
+    listOfMembers = [] 
+
+    #Add members to array
+    for member in bot.get_all_members():
+        listOfMembers.append(Member(parseStr(member.id),member.name,member.nick,member.top_role,0))
+
+    #Fetch the a member at [x] index added to the array.
+    sentence = listOfMembers[8].displayMember()
+    #Get length of array.
+    length = len(listOfMembers)
+
+    yield from bot.say(str(sentence))
+    yield from bot.say("NumberofMembersinArray: "+str(length))
     
 bot.run(MAIN.get('login_token'))
