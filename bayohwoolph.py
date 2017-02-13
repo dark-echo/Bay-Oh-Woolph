@@ -10,23 +10,22 @@ from discord.ext import commands
 # Our specific stuff
 from utils import *
 
+initial_extensions = [
+    'cogs.basicpromotions',
+]
+
 logging.basicConfig(level=logging.DEBUG)
 
-global config
-# Parse the config and stick in global "config" var
 config = configparser.ConfigParser()
 for inifile in [os.path.expanduser('~')+'/.bayohwoolph.ini','bayohwoolph.local.ini','bayohwoolph.ini']:
     if os.path.isfile(inifile):
         config.read(inifile)
         break # First config file wins
-global MAIN
 MAIN = config['MAIN']
 
-
 description = '''Dark Echo's barkeep'''
-global bot
-bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN['commandchar']), description=description)
 
+bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN.get('commandchar')), description=description)
 
 @bot.event
 @asyncio.coroutine
@@ -35,6 +34,7 @@ def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
+<<<<<<< HEAD
 
 newcadetmsg = """
 **Welcome to Dark Echo, {0}!**
@@ -126,5 +126,14 @@ def getmembers():
 
     yield from bot.say(str(sentence))
     yield from bot.say("NumberofMembersinArray: "+str(length))
+=======
+>>>>>>> 2361fc964518b86f39f4a3664741f9e8f4294ce8
     
-bot.run(MAIN.get('login_token'))
+if __name__ == '__main__':
+    for extension in initial_extensions:
+        try:
+            bot.load_extension(extension)
+        except Exception as e:
+            print('Failed to load extension {}\n{}: {}'.format(extension, type(e).__name__, e))
+
+    bot.run(MAIN.get('login_token'))
