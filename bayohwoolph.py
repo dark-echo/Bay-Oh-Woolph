@@ -10,7 +10,7 @@ from discord.ext import commands
 # Our specific stuff
 from utils import *
 
-#Parse a string to primitave type based on content using lambda expression 
+#Parse a string to primitive type based on content using lambda expression 
 import string
 parseStr = lambda x: x.isalpha() and x or x.isdigit() and \
                 int(x) or x.isalnum() and x or \
