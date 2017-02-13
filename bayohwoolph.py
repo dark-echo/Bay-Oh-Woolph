@@ -97,7 +97,11 @@ def newcadet(
     # Turns an array of members into a nicely formatted list of mentions.
     mentiontext = memberlist_to_mentionlist(members)
 
-    yield from bot.say(newcadetmsg.format(mentiontext))
+    yield from bot.say('Go check out <#146726509460193281>, ' + mentiontext + '.')
+
+    cadetsmess = bot.get_channel('146726509460193281')
+
+    yield from bot.send_message(cadetsmess,newcadetmsg.format(mentiontext))
 
     cadetrole = discord.Object(id=146725461727117314)
     
