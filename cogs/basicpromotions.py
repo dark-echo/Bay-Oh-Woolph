@@ -59,7 +59,7 @@ class Basicpromotions:
 
         Please set an avatar image in Discord, as it greatly helps with telling people apart when using the in-game overlay.
 
-        If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the @Leadership.
+        If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the <@146724062301913088>.
         """
 
         yield from self.bot.type()
@@ -111,22 +111,20 @@ class Basicpromotions:
         """Give intro message to new officer and assign them Officer role."""
 
         newofficermsg = """
-        **Welcome to Dark Echo's Officer Club, {0}!**
+        **<:echoBlue:230423421983522816> Welcome to Dark Echo's Officer's Club, {0}!**
 
-        **<:echoBlue:230423421983522816> Welcome to Dark Echo's @Officer's Club, {0}!
+        Dark Echo <@146724062301913088> believe that you are an asset to this organization, and has promoted you to a full member (Officer).
 
-        Dark Echo @Leadership believe that you are an asset to this organization, and has promoted you to a full member (Officer).
+        Optional but traditional and highly recommended: Please bring some sort of rare beverage to Snodgrass Orbital in Disci and share a screenshot of that run on the forums and/or in <#173953415280328704>.
 
-        Optional but traditional and highly recommended: Please bring some sort of rare beverage to Snodgrass Orbital in Disci and share a screenshot of that run on the forums and/or in #disci-disco-cafe.
-
-        A @Forum Admin will update your forum permissions. Once your forum permissions are set up, make sure to:
+        A <@235466370316238848> will update your forum permissions. Once your forum permissions are set up, make sure to:
         * Read the latest Standing Orders: <http://www.darkecho.org/forums/viewforum.php?f=6>
         * "Subscribe" to DE Urgent: <http://www.darkecho.org/forums/viewforum.php?f=7>
         * and also "Ops": <http://www.darkecho.org/forums/viewforum.php?f=9>
 
         If you use Inara, join us at <http://inara.cz/wing/300>
 
-        (Reminder to @freiheit🗽: Go do a "!addroster Nickname" in #allies, and also remind @freiheit🗽 to do the PalCon thing and one of the @Forum Admins to do the Forum and/or Inara stuff)
+        (Reminder to <@146724062301913088>: Go do a "!addroster Nickname" in #allies, and update forum groups)
 
         """
 
