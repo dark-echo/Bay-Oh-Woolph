@@ -54,6 +54,7 @@ class Basicpromotions:
         
     @commands.command()
     @commands.has_role('Leadership')
+    @commands.has_role('Recruiter/DiscordMod')
     @asyncio.coroutine
     def newcadet(self,
         member1  : discord.Member = None, 
