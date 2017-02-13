@@ -3,6 +3,9 @@ from utils import *
 import discord
 import asyncio
 
+ROLE_CADET = '146725461727117314'
+CADETS_MESS = '146726509460193281'
+
 class Basicpromotions:
     """Leadership-only commands for promoting to basic membership roles."""
     
@@ -69,13 +72,13 @@ class Basicpromotions:
         # Turns an array of members into a nicely formatted list of mentions.
         mentiontext = memberlist_to_mentionlist(members)
 
-        yield from self.bot.say('Go check out <#146726509460193281>, ' + mentiontext + '.')
+        yield from self.bot.say('Go check out <#{}>, '.format(CADETS_MESS) + mentiontext + '.')
 
-        cadetsmess = self.bot.get_channel('146726509460193281')
+        cadetsmess = self.bot.get_channel(CADETS_MESS)
 
         yield from self.bot.send_message(cadetsmess,newcadetmsg.format(mentiontext))
 
-        cadetrole = discord.Object(id=146725461727117314)
+        cadetrole = discord.Object(id=ROLE_CADET)
         
         for member in members:
             yield from self.bot.add_roles(member,cadetrole)
