@@ -35,6 +35,7 @@ description = '''Dark Echo's barkeep'''
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN.get('commandchar')), description=description)
 
+
 @bot.event
 @asyncio.coroutine
 def on_ready():
@@ -43,13 +44,6 @@ def on_ready():
     print(bot.user.id)
     print('------')
     
-if __name__ == '__main__':
-    for extension in initial_extensions:
-        try:
-            bot.load_extension(extension)
-        except Exception as e:
-            print('Failed to load extension {}\n{}: {}'.format(extension, type(e).__name__, e))
-
 
 @bot.command()
 @asyncio.coroutine
@@ -71,4 +65,12 @@ def getmembers():
     yield from bot.say("NumberofMembersinArray: "+str(length))
 
 
+# Everything should go above this
+if __name__ == '__main__':
+    for extension in initial_extensions:
+        try:
+            bot.load_extension(extension)
+        except Exception as e:
+            print('Failed to load extension {}\n{}: {}'.format(extension, type(e).__name__, e))
     bot.run(MAIN.get('login_token'))
+## Nothing goes after this comment! ##
