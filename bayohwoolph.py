@@ -20,6 +20,7 @@ parseStr = lambda x: x.isalpha() and x or x.isdigit() and \
 
 initial_extensions = [
     'cogs.basicpromotions',
+    'cogs.alerts',
 ]
 
 logging.basicConfig(level=logging.DEBUG)
