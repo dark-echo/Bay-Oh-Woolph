@@ -35,7 +35,7 @@ MAIN = config['MAIN']
 
 description = '''Dark Echo's barkeep'''
 
-bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN.get('commandchar')), description=description)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN.get('commandchar'), '<@&277976387543891968> '), description=description)
 
 
 @bot.event
