@@ -46,10 +46,9 @@ def on_ready():
     print(bot.user.id)
     print('------')
     
-
+#Test method to populate an array from discord -Infinite
 @bot.command()
 @asyncio.coroutine
-#Test method to populate an array from discord -Infinite
 def getmembers():
     #Intialize array
     listOfMembers = [] 
