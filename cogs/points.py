@@ -34,7 +34,7 @@ class Points:
         length = len(listOfMembers)
 
 
-        yield from self.bot.say("NumberofMembersinArray: "+str(length))
+        yield from self.bot.say("NumberofMembersinArray: " + str(length))
 
 def setup(bot):
     bot.add_cog(Points(bot))
