@@ -1,14 +1,21 @@
 from discord.ext import commands
 from utils import *
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from member import Base, Member
 import discord
 import asyncio
-import sqlite3
 
 
-from member import Member
+
+
 class Points:
    
-   
+   engine = create_engine('sqlite:///bayohwoolph.db')
+   Base.metadata.bind = engine
+   DBSession = sessionmaker(bind=engine)
+   global session
+   session = DBSession()
 
    def __init__(self,bot):
         self.bot = bot
@@ -18,7 +25,7 @@ class Points:
    @commands.has_role('Leadership')
    @asyncio.coroutine
    def getmembers(self, role1 : discord.Role=None):
-        
+        global session
        
         
         therole = role1
@@ -33,6 +40,11 @@ class Points:
             if arole:
                 if arole[0].name == therole.name:
                     listOfMembers.append(Member(int(amember.id),str(amember.name),str(amember.nick),str(amember.top_role),0))
+
+        for amember in listOfMembers:
+            session.add(amember)
+
+        session.commit()
                 
         length = len(listOfMembers)
 
