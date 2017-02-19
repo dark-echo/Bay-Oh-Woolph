@@ -21,6 +21,7 @@ parseStr = lambda x: x.isalpha() and x or x.isdigit() and \
 initial_extensions = [
     'cogs.basicpromotions',
     'cogs.alerts',
+    'cogs.points',
 ]
 
 # logging.basicConfig(level=logging.DEBUG)
@@ -46,26 +47,6 @@ def on_ready():
     print(bot.user.id)
     print('------')
     
-#Test method to populate an array from discord -Infinite
-@bot.command()
-@asyncio.coroutine
-def getmembers():
-    #Intialize array
-    listOfMembers = [] 
-
-    #Add members to array
-    for member in bot.get_all_members():
-        listOfMembers.append(Member(parseStr(member.id),member.name,member.nick,member.top_role,0))
-
-    #Fetch the a member at [x] index added to the array.
-    sentence = listOfMembers[8].displayMember()
-    #Get length of array.
-    length = len(listOfMembers)
-
-    yield from bot.say(str(sentence))
-    yield from bot.say("NumberofMembersinArray: "+str(length))
-
-
 # Everything should go above this
 if __name__ == '__main__':
     for extension in initial_extensions:
