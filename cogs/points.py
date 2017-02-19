@@ -5,6 +5,7 @@ import asyncio
 
 
 class Points:
+    
     from member import Member
     #Parse a string to primitave type based on content using lambda expression 
     import string
@@ -24,7 +25,7 @@ class Points:
         listOfMembers = [] 
 
         #Add members to array
-        for member in self.bot.get_all_members();
+        for member in self.bot.get_all_members():
             listOfMembers.append(Member(parseStr(member.id),member.name,member.nick,member.top_role,0))
 
         
