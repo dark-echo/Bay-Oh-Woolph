@@ -20,12 +20,11 @@ class Points:
         for member in self.bot.get_all_members():
             listOfMembers.append(Member(parseStr(member.id),member.name,member.nick,member.top_role,0))
 
-        #Fetch the a member at [x] index added to the array.
-        sentence = listOfMembers[8].displayMember()
+        
         #Get length of array.
         length = len(listOfMembers)
 
-        yield from self.bot.say(str(sentence))
+
         yield from self.bot.say("NumberofMembersinArray: "+str(length))
 
 def setup(bot):
