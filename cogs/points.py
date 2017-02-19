@@ -2,17 +2,12 @@ from discord.ext import commands
 from utils import *
 import discord
 import asyncio
+import string
 
 
+from member import Member
 class Points:
     
-    from member import Member
-    #Parse a string to primitave type based on content using lambda expression 
-    import string
-    parseStr = lambda x: x.isalpha() and x or x.isdigit() and \
-                int(x) or x.isalnum() and x or \
-                len(set(string.punctuation).intersection(x)) == 1 and \
-                x.count('.') == 1 and float(x) or x
 
     def __init__(self,bot):
         self.bot = bot
@@ -22,7 +17,7 @@ class Points:
     @commands.has_role('Leadership')
     @asyncio.coroutine
     def getmembers(self):
-    
+          
     #Typing function
         yield from self.bot.type()
     #Intialize array
@@ -30,7 +25,7 @@ class Points:
 
         #Add members to array
         for member in self.bot.get_all_members():
-            listOfMembers.append(Member(parseStr(member.id),member.name,member.nick,member.top_role,0))
+            listOfMembers.append(Member(int(member.id),member.name,member.nick,member.top_role,0))
 
         
         #Get length of array.
