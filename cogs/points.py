@@ -30,8 +30,9 @@ class Points:
         #Add members to array
         for amember in self.bot.get_all_members():
             arole = [role for role in amember.roles if role == therole]
-            if arole == therole:
-                listOfMembers.append(Member(int(amember.id),str(amember.name),str(amember.nick),str(amember.top_role),0))
+            if arole:
+                if arole[0].name == therole.name:
+                    listOfMembers.append(Member(int(amember.id),str(amember.name),str(amember.nick),str(amember.top_role),0))
                 
         length = len(listOfMembers)
 
