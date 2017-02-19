@@ -12,7 +12,7 @@ class Member(Base):
     __tablename__ = 'member'
 
     id = Column(Integer, primary_key=True)
-    globalName = Column(String(250), nullable=False)
+    globalName = Column(String(250), nullable=True)
     nickname = Column(String(250), nullable=True)
     role = Column(String(250), nullable=True)
     points = Column(Integer, nullable=True)
