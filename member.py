@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
-class Member: 
 
+class Member: 
+    
 
 #Constuctor that defines properties of member object.
     def __init__(self,id,globalAccountName,serverNickname,role,points):

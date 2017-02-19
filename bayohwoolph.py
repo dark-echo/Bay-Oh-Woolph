@@ -31,7 +31,6 @@ description = '''Dark Echo's barkeep'''
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN.get('commandchar'), '<@&277976387543891968> '), description=description)
 
-
 @bot.event
 @asyncio.coroutine
 def on_ready():
