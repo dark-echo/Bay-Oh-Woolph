@@ -3,6 +3,7 @@ from utils import *
 import discord
 import asyncio
 
+from member import Member
 class Points:
 
     def __init__(self,bot):
