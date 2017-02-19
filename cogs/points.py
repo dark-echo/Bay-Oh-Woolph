@@ -10,7 +10,7 @@ class Points:
         self.bot = bot
 
 #Test method to populate an array from discord -Infinite
-    @bot.command()
+    @commands.command()
     @asyncio.coroutine
     def getmembers(self):
     #Intialize array
