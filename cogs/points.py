@@ -19,6 +19,7 @@ class Points:
 
 #Test method to populate an array from discord -Infinite
     @commands.command()
+    @commands.has_role('Leadership')
     @asyncio.coroutine
     def getmembers(self):
     #Intialize array
