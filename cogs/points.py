@@ -22,6 +22,9 @@ class Points:
     @commands.has_role('Leadership')
     @asyncio.coroutine
     def getmembers(self):
+    
+    #Typing function
+        yield from self.bot.type()
     #Intialize array
         listOfMembers = [] 
 
