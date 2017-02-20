@@ -3,9 +3,11 @@ from utils import *
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from member import Base, Member
+from rank import Ranks
+from utility.dbproc import Baydb
 import discord
 import asyncio
-from rank import Ranks
+
 
 
 
@@ -52,42 +54,27 @@ class Points:
         
 
         yield from self.bot.say("DB successfully updated")
-            
+    
+   #Add points command        
    @commands.command()
    @commands.has_role('Leadership')
    @asyncio.coroutine
-   def addpoint(self, member1  : discord.Member=None):
-       global session
+   def addpoint(self, member1  : discord.Member=None, pv=None):
        
+       
+
        amember = member1
-       
        storemember = []
 
        points = 0
 
-       for member in session.query(Member).\
-                 filter(Member.id ==  amember.id):
-           storemember.append(member)
+       try:
+           pointvalue = int(pv)
+           Baydb.updatepoints(amember,storemember,points,pointvalue)
        
-       if storemember:
-           points = storemember[0].points
-
-           points = points + 1
-
-           session.query(Member).filter_by(id=amember.id).update({"points": points})
-           session.commit()
-           session.close()
-       
-           yield from self.bot.say("You have gained a point {0.mention}!".format(amember)+" Total points: "+str(points))
-
-       else:
-           yield from self.bot.say(""" No points for you imposter... """)
-
-
-
-
-
-
+           yield from self.bot.say("command ran fully");
+       except:
+           yield from self.bot.say("Invalid point value");
 
 
 def setup(bot):
