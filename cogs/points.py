@@ -24,7 +24,9 @@ class Points:
    @commands.command()
    @commands.has_role('Leadership')
    @asyncio.coroutine
-   def getmembers(self, role1 : discord.Role=None):
+   def updateroster(self, role1 : discord.Role=None):
+        """Update roster for Dark Echo based on role."""
+        
         global session
        
         
