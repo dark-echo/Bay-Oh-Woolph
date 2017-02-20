@@ -35,12 +35,13 @@ class Points:
         listOfMembers = [] 
 
         #Add members to array
-        for amember in self.bot.get_all_members():
-            arole = [role for role in amember.roles if role == therole]
+        for themember in self.bot.get_all_members():
+            arole = [role for role in themember.roles if role == therole]
             if arole:
                 if arole[0].name == therole.name:
-                    listOfMembers.append(Member(int(amember.id),str(amember.name),str(amember.nick),str(amember.top_role),0))
-
+                    listOfMembers.append(Member(int(themember.id),str(themember.name),str(themember.nick),str(themember.top_role),0))
+        
+          
         for amember in listOfMembers:
             session.add(amember)
 
