@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from member import Base, Member
 import discord
 import asyncio
-
+from rank import Ranks
 
 
 
@@ -41,7 +41,7 @@ class Points:
             arole = [role for role in themember.roles if role == therole]
             if arole:
                 if arole[0].name == therole.name:
-                    listOfMembers.append(Member(int(themember.id),str(themember.name),str(themember.nick),str(arole[0].name)))
+                    listOfMembers.append(Member(int(themember.id),str(themember.name),str(themember.nick),str(themember.top_role)))
         
           
         for amember in listOfMembers:
@@ -53,13 +53,44 @@ class Points:
 
         yield from self.bot.say("DB successfully updated")
             
-     
+   @commands.command()
+   @commands.has_role('Leadership')
+   @asyncio.coroutine
+   def addpoint(self, member1  : discord.Member=None):
+       global session
        
+       amember = member1
+       
+       storemember = []
+
+       points = 0
+
+       for member in session.query(Member).\
+                 filter(Member.id ==  amember.id):
+           storemember.append(member)
+       
+       if storemember:
+           points = storemember[0].points
+
+           points = points + 1
+
+           session.query(Member).filter_by(id=amember.id).update({"points": points})
+           session.commit()
+
+       
+           yield from self.bot.say("""You have gained a point {0}! Total points: """+str(points))
+
+       else:
+           yield from self.bot.say(""" No points for you imposter... """)
 
 
-        
+
+
+
+
+
 
 def setup(bot):
-    bot.add_cog(Points(bot))
+        bot.add_cog(Points(bot))
 
 
