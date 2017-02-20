@@ -15,20 +15,18 @@ class Member(Base):
     globalName = Column(String(250), nullable=False)
     nickname = Column(String(250), nullable=True)
     role = Column(String(250), nullable=True)
-    points = Column(Integer, nullable=True)
     
 
-    def __init__(self,id,globalAccountName,serverNickname,role,points):
+    def __init__(self,id,globalAccountName,serverNickname,role):
         self.id = id
         self.globalName = globalAccountName
         self.nickname = serverNickname
         self.role = role
-        self.points = points
 
 
 #Display member method.
     def displayMember(self):
-        print ("ID:", self.id, "GlobalAccount:", self.globalName, "Nickname:", self.nickname, "Role:", self.role, "Points:", self.points)
+        print ("ID:", self.id, "GlobalAccount:", self.globalName, "Nickname:", self.nickname, "Role:", self.role)
 
 #Example of creating one object, changing value of an object and displaying an object using a method.
 '''mem1 = Member(43344454,"larry","doessuck","officer",150)
