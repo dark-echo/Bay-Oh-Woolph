@@ -41,17 +41,17 @@ class Points:
             arole = [role for role in themember.roles if role == therole]
             if arole:
                 if arole[0].name == therole.name:
-                    listOfMembers.append(Member(int(themember.id),str(themember.name),str(themember.nick),str(themember.top_role),0))
+                    listOfMembers.append(Member(int(themember.id),str(themember.name),str(themember.nick),str(arole[0].name)))
         
           
         for amember in listOfMembers:
-            session.add(amember)
+            session.merge(amember)
 
         session.commit()
-                
-        length = len(listOfMembers)
+        
+        
 
-        yield from self.bot.say("Number of " + str(therole) + "s in array: " + str(length))
+        yield from self.bot.say("DB successfully updated")
             
      
        
