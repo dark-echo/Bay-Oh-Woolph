@@ -20,7 +20,7 @@ class Baydb:
    def __init__(self, bot):
         self.bot = bot
     
-        @asyncio.coroutine
+   @asyncio.coroutine
    def updatepoints(amember,storemember,points,pointvalue):  
            global session
            yield from self.bot.type()
