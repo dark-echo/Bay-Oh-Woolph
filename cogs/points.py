@@ -48,7 +48,7 @@ class Points:
             session.merge(amember)
 
         session.commit()
-        
+        session.close()        
         
 
         yield from self.bot.say("DB successfully updated")
@@ -76,7 +76,7 @@ class Points:
 
            session.query(Member).filter_by(id=amember.id).update({"points": points})
            session.commit()
-
+           session.close()
        
            yield from self.bot.say("""You have gained a point {0}! Total points: """+str(points))
 
