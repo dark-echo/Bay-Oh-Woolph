@@ -78,7 +78,7 @@ class Points:
            session.commit()
            session.close()
        
-           yield from self.bot.say("""You have gained a point {0}! Total points: """+str(points))
+           yield from self.bot.say("You have gained a point {0.mention}!".format(amember)+" Total points: "+str(points))
 
        else:
            yield from self.bot.say(""" No points for you imposter... """)
