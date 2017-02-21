@@ -2,6 +2,7 @@ from discord.ext import commands
 from utils import *
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy import exists
 from member import Base, Member
 from rank import Ranks
 from utility.dbproc import Baydb
@@ -30,8 +31,9 @@ class Points:
         """Update roster for Dark Echo based on role."""
         
         global session
-       
         
+        count = 0
+    #Stores role
         therole = role1
     #Typing function
         yield from self.bot.type()
@@ -47,14 +49,24 @@ class Points:
         
           
         for amember in listOfMembers:
-            session.merge(amember)
+            q = session.query(exists().where(Member.id == amember.id)).scalar()
+            if q: 
+                    session.merge(amember)
+            
+            else:
+                    session.add(amember)
+                    count = count + 1         
 
+        
         session.commit()
         session.close()        
         
+        if count != 0:
+            yield from self.bot.say("DB successfully updated."+" Number of members inserted: "+str(count))
 
-        yield from self.bot.say("DB successfully updated")
-    
+        else:
+            yield from self.bot.say("DB successfully updated. No new members inserted.")
+
    #Add points command        
    @commands.command()
    @commands.has_role('Leadership')
