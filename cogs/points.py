@@ -2,7 +2,10 @@ from discord.ext import commands
 from utils import *
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy import exists
 from member import Base, Member
+from rank import Ranks
+from utility.dbproc import Baydb
 import discord
 import asyncio
 
@@ -24,10 +27,13 @@ class Points:
    @commands.command()
    @commands.has_role('Leadership')
    @asyncio.coroutine
-   def getmembers(self, role1 : discord.Role=None):
-        global session
-       
+   def updateroster(self, role1 : discord.Role=None):
+        """Update roster for Dark Echo based on role."""
         
+        global session
+        
+        count = 0
+    #Stores role
         therole = role1
     #Typing function
         yield from self.bot.type()
@@ -39,25 +45,51 @@ class Points:
             arole = [role for role in themember.roles if role == therole]
             if arole:
                 if arole[0].name == therole.name:
-                    listOfMembers.append(Member(int(themember.id),str(themember.name),str(themember.nick),str(themember.top_role),0))
+                    listOfMembers.append(Member(int(themember.id),str(themember.name),str(themember.nick),str(themember.top_role)))
         
           
         for amember in listOfMembers:
-            session.add(amember)
-
-        session.commit()
-                
-        length = len(listOfMembers)
-
-        yield from self.bot.say("Number of " + str(therole) + "s in array: " + str(length))
+            q = session.query(exists().where(Member.id == amember.id)).scalar()
+            if q: 
+                    session.merge(amember)
             
-     
-       
-
+            else:
+                    session.add(amember)
+                    count = count + 1         
 
         
+        session.commit()
+        session.close()        
+        
+        if count != 0:
+            yield from self.bot.say("DB successfully updated."+" Number of members inserted: "+str(count))
+
+        else:
+            yield from self.bot.say("DB successfully updated. No new members inserted.")
+
+   #Add points command        
+   @commands.command()
+   @commands.has_role('Leadership')
+   @asyncio.coroutine
+   def addpoint(self, member1  : discord.Member=None, pv=None):
+       
+       
+
+       amember = member1
+       storemember = []
+
+       points = 0
+
+       try:
+           pointvalue = int(pv)
+           Baydb.updatepoints(amember,storemember,points,pointvalue)
+       
+           yield from self.bot.say("command ran fully");
+       except:
+           yield from self.bot.say("Invalid point value");
+
 
 def setup(bot):
-    bot.add_cog(Points(bot))
+        bot.add_cog(Points(bot))
 
 
