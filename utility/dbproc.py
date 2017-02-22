@@ -21,9 +21,9 @@ class Baydb:
         self.bot = bot
     
    @asyncio.coroutine
-   def updatepoints(amember,storemember,points,pointvalue):  
+   def pointinsert(amember,storemember,points,pointvalue):  
            global session
-           yield from self.bot.type()
+           
            if pointvalue.is_integer():
                
                for member in session.query(Member).\

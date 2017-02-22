@@ -29,7 +29,7 @@ MAIN = config['MAIN']
 
 description = '''Dark Echo's barkeep'''
 
-bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN.get('commandchar'), '<@&277976387543891968> '), description=description)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN.get('commandchar'), '<@&280045122614198292> '), description=description)
 
 @bot.event
 @asyncio.coroutine
@@ -38,7 +38,15 @@ def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-    
+
+    discord.Message.content.
+@bot.event
+async def on_message(message):
+        if message.content.con:
+            await client.send_message(message.channel, 'Say hello')
+            msg = await client.wait_for_message(author=message.author, content='hello')
+            await client.send_message(message.channel, 'Hello.')
+
 # Everything should go above this
 if __name__ == '__main__':
     for extension in initial_extensions:

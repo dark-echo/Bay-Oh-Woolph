@@ -24,6 +24,7 @@ class Points:
         self.bot = bot
 
 #Test method to populate an array from discord -Infinite
+   
    @commands.command()
    @commands.has_role('Leadership')
    @asyncio.coroutine
@@ -56,13 +57,17 @@ class Points:
             else:
                     session.add(amember)
                     count = count + 1         
-
+            
         
         session.commit()
-        session.close()        
+        session.close() 
+        
+     
+
         
         if count != 0:
             yield from self.bot.say("DB successfully updated."+" Number of members inserted: "+str(count))
+            
 
         else:
             yield from self.bot.say("DB successfully updated. No new members inserted.")
@@ -71,7 +76,7 @@ class Points:
    @commands.command()
    @commands.has_role('Leadership')
    @asyncio.coroutine
-   def addpoint(self, member1  : discord.Member=None, pv=None):
+   def addpoints(self, member1  : discord.Member=None, pv=None):
        
        
 
@@ -83,11 +88,13 @@ class Points:
        try:
            pointvalue = int(pv)
            Baydb.updatepoints(amember,storemember,points,pointvalue)
+           
        
-           yield from self.bot.say("command ran fully");
-       except:
-           yield from self.bot.say("Invalid point value");
+           yield from self.bot.say("Command ran without errors thrown.");
+       except(ValueError, TypeError):
+           yield from self.bot.say("Invalid point value.");
 
+  
 
 def setup(bot):
         bot.add_cog(Points(bot))

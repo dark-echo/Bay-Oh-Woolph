@@ -26,8 +26,8 @@ class Member(Base):
 
 
 #Display member method.
-    def displayMember(self):
-        print ("ID:", self.id, "GlobalAccount:", self.globalName, "Nickname:", self.nickname, "Role:", self.role)
+    def __str__(self):
+        return "\n AccountName: %s Nickname: %s Points: %s" % (self.globalName,self.nickname,self.points)
 
 #Example of creating one object, changing value of an object and displaying an object using a method.
 '''mem1 = Member(43344454,"larry","doessuck","officer",150)
