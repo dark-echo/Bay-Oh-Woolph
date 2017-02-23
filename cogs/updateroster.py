@@ -72,7 +72,7 @@ class UpdateRoster:
     async def on_message(self,message):
         mod = self.bot.get_channel(MOD_LOG)
 
-        if message.content.startswith('.newcadet'):
+        if message.content.startswith('$newcadet'):
             await asyncio.sleep(5)
             memberrole = discord.Object(id=ROLE_MEMBER)
 
