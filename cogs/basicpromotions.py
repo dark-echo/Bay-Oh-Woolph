@@ -2,12 +2,17 @@ from discord.ext import commands
 from utils import *
 import discord
 import asyncio
+from cogs.updateroster import UpdateRoster
 
 ROLE_CADET = '146725461727117314'
 ROLE_OFFICER = '146724317785358337'
 
 CADETS_MESS = '146726509460193281'
 OFFICERS_CLUB = '146726934825533440'
+
+ROLE_MEMBER = '284029774513569793'
+
+
 
 NEWCADETMSG = """**Welcome to Dark Echo, {0}!**
 
@@ -51,6 +56,11 @@ class Basicpromotions:
     
     def __init__(self, bot):
         self.bot = bot
+
+
+
+
+
         
     @commands.command()
     @commands.has_any_role('Leadership','Recruiter')
@@ -87,9 +97,10 @@ class Basicpromotions:
         filter(None,argmembers)
         members = [i for i in argmembers if i is not None]
 
+        memrole = discord.Object(id=ROLE_MEMBER)
         cadetrole = discord.Object(id=ROLE_CADET)
         for member in members:
-            yield from self.bot.add_roles(member,cadetrole)
+            yield from self.bot.add_roles(member,cadetrole,memrole)
 
         mentiontext = memberlist_to_mentionlist(members)
 
