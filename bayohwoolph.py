@@ -15,6 +15,7 @@ initial_extensions = [
     'cogs.basicpromotions',
     'cogs.alerts',
     'cogs.points',
+    'cogs.updateroster'
 ]
 
 # logging.basicConfig(level=logging.DEBUG)
