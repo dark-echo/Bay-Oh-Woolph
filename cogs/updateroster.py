@@ -122,5 +122,5 @@ class UpdateRoster:
 
 
 
-def setup(bbot):
-    bbot.add_cog(UpdateRoster(bbot))
+def setup(bot):
+    bot.add_cog(UpdateRoster(bot))
