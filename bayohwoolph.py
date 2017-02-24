@@ -39,7 +39,8 @@ def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-    
+
+
 # Everything should go above this
 if __name__ == '__main__':
     for extension in initial_extensions:

@@ -15,11 +15,16 @@ ROLE_MEMBER = '284029774513569793'
 
 MOD_LOG = '274619518662344704'
 
+
+
 #Command to Update Roster
 class UpdateRoster:
 
+
     def __init__(self, bot):
         self.bot = bot
+    #assign bot to bayohwoolpbot
+
 
     @commands.command()
     @commands.has_role('Leadership')
@@ -29,6 +34,8 @@ class UpdateRoster:
         mod = self.bot.get_channel(MOD_LOG)
 
         memberrole = discord.Object(id=ROLE_MEMBER)
+
+
 
         count = 0
         # Intialize array
@@ -68,12 +75,13 @@ class UpdateRoster:
         session.close()
 
     #Update Roster on newcadet
-
-    async def on_message(self,message):
+    @commands.Bot.event()
+    @asyncio.coroutine
+    def on_message(self,message):
         mod = self.bot.get_channel(MOD_LOG)
 
         if message.content.startswith('$newcadet'):
-            await asyncio.sleep(5)
+            yield from self.bot(asyncio.sleep(5))
             memberrole = discord.Object(id=ROLE_MEMBER)
 
             count = 0
@@ -102,17 +110,17 @@ class UpdateRoster:
 
 
                 if count != 0:
-                    await  self.bot.send_message(mod,"DB successfully updated." + " Number of members inserted: " + str(count))
+                    yield from self.bot.send_message(mod, "DB successfully updated." + " Number of members inserted: " + str(count))
                 else:
-                    await  self.bot.send_message(mod, "DB successfully updated. No new members inserted.")
+                    yield from  self.bot.send_message(mod, "DB successfully updated. No new members inserted.")
 
             except:
                 session.roleback()
-
+                yield from  self.bot.send_message(mod, "Insertion failure")
             session.close()
 
 
 
 
-def setup(bot):
-    bot.add_cog(UpdateRoster(bot))
+def setup(bbot):
+    bbot.add_cog(UpdateRoster(bbot))

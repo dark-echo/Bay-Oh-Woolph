@@ -5,8 +5,6 @@ from sqlalchemy.orm import sessionmaker
 from member import Base, Member
 import discord
 import asyncio
-from rank import Ranks
-
 
 
 class Baydb:
