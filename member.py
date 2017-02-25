@@ -4,7 +4,9 @@ import sys
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+from sqlalchemy.types import *
 from sqlalchemy import create_engine
+import _datetime
 
 Base = declarative_base()
 
@@ -17,6 +19,8 @@ class Member(Base):
     role = Column(String(250), nullable=True)
     points = Column(Integer, nullable=True, default=0)
     rankId = Column (Integer, ForeignKey('rank.rankId'))
+    checkInDate = Column (DateTime, nullable=True)
+    nextDate = Column (DateTime, nullable=True)
     
 
     def __init__(self,id,globalAccountName,serverNickname,role,rankId):
