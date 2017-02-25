@@ -2,14 +2,16 @@ from discord.ext import commands
 from utils import *
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import exists
-from member import Base, Member
+from sqlalchemy import *
+from member import Base, Member, Rank
 from utility.dbproc import Baydb
+from bayohwoolph import bot
 import discord
 import asyncio
 import logging
 
 session = Baydb.session
+conn = Baydb.conn
 
 ROLE_MEMBER = '284029774513569793'
 
@@ -53,6 +55,13 @@ class UpdateRoster:
             q = session.query(exists().where(Member.id == amember.id)).scalar()
             if q:
                 session.merge(amember)
+                stmt = update(Member). \
+                    where(Member.id== amember.id). \
+                    values(points=  (select([Rank.pointValue])).where(Member.rankId == Rank.rankId and Member.role != "Cadet" and Member.points == 0 | Member.points == null ))
+
+                conn.execute(stmt)
+
+
 
             else:
                 session.add(amember)
@@ -75,13 +84,13 @@ class UpdateRoster:
         session.close()
 
     #Update Roster on newcadet
-    @commands.Bot.event()
+    @bot.event
     @asyncio.coroutine
     def on_message(self,message):
         mod = self.bot.get_channel(MOD_LOG)
 
         if message.content.startswith('$newcadet'):
-            yield from self.bot(asyncio.sleep(5))
+            yield from asyncio.sleep(5)
             memberrole = discord.Object(id=ROLE_MEMBER)
 
             count = 0
