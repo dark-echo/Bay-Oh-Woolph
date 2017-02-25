@@ -8,7 +8,7 @@ BEGIN TRANSACTION;
 
 -- Table: rank
 CREATE TABLE rank (
-    rankId     INTEGER       PRIMARY KEY AUTOINCREMENT,
+    rankId     INTEGER     PRIMARY KEY,
     rankName   VARCHAR (250),
     pointValue INTEGER
 );
