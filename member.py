@@ -6,6 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy.types import *
 from sqlalchemy import create_engine
+from config import Config
 import _datetime
 
 Base = declarative_base()
@@ -51,6 +52,6 @@ class Rank(Base):
 
 
 
-engine = create_engine('sqlite:///bayohwoolph.db')
+engine = create_engine(Config.MAIN['dbpath'])
 
 Base.metadata.create_all(engine)
