@@ -9,7 +9,7 @@ import asyncio
 
 class Baydb:
 
-    engine = create_engine('sqlite:///C:\\Users\\Daniel\\Source\Repos\\Bay-Oh-Woolph\\bayohwoolph.db')
+    engine = create_engine('sqlite:///bayohwoolph.db')
     Base.metadata.bind = engine
     DBSession = sessionmaker(bind=engine)
     session = DBSession()
