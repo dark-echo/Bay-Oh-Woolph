@@ -7,7 +7,7 @@ PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
 
 -- Table: rank
-CREATE TABLE rank (
+CREATE TABLE IF NOT EXISTS rank (
     rankId     INTEGER     PRIMARY KEY,
     rankName   VARCHAR (250),
     pointValue INTEGER
