@@ -36,7 +36,7 @@ class Points:
     @commands.command()
     @commands.has_role('Leadership')
     @asyncio.coroutine
-    def addpoint(self, member1  : discord.Member=None, pv=None):
+    def addpoints(self, member1  : discord.Member=None, pv=None):
         """Adds points to specified member."""
 
         amember = member1
