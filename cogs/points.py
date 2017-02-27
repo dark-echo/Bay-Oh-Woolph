@@ -9,7 +9,9 @@ import _datetime
 import discord
 import asyncio
 
+from config import Config
 
+POINTS = Config.config['POINTS']
 
 
 class Points:
@@ -24,7 +26,7 @@ class Points:
 
     global ROLE_MEMBER
 
-    ROLE_MEMBER = '284029774513569793'
+    ROLE_MEMBER = POINTS['ROLE_MEMBER']
 
     global conn
     conn = Baydb.conn

@@ -10,13 +10,15 @@ import discord
 import asyncio
 import logging
 
+from config import Config
+
+UPDATEROSTER = Config.config['UPDATEROSTER']
+
+ROLE_MEMBER = UPDATEROSTER['ROLE_MEMBER']
+MOD_LOG = UPDATEROSTER['MOD_LOG']
+
 session = Baydb.session
 conn = Baydb.conn
-
-ROLE_MEMBER = '284029774513569793'
-
-MOD_LOG = '274619518662344704'
-
 
 
 #Command to Update Roster

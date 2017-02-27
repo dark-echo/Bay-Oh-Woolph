@@ -2,10 +2,13 @@ from discord.ext import commands
 from utils import *
 import discord
 import asyncio
+from config import Config
 
-HIGH_COMMAND = '146729963012227073'
-LOBBY = '146723400671428608'
-BOT_DEV = '280053655342678016'
+ALERTS = Config.config['ALERTS']
+
+HIGH_COMMAND = ALERTS['high_command']
+LOBBY = ALERTS['lobby']
+BOT_DEV = ALERTS['bot_dev']
 
 class Alerts:
     """Automatic notifications about stuff."""
