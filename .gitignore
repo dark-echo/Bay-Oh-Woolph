@@ -95,6 +95,7 @@ ENV/
 # database
 /bayohwoolh.db
 bayohwoolph.db
+*.db
 
 # Editor temp files
 *~
