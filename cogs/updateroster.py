@@ -10,6 +10,9 @@ import discord
 import asyncio
 import logging
 
+import logging
+logger = logging.getLogger('bayohwoolph.cogs.updateroster')
+
 from config import Config
 
 UPDATEROSTER = Config.config['UPDATEROSTER']

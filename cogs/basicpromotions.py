@@ -6,6 +6,9 @@ from cogs.updateroster import UpdateRoster
 
 from config import Config
 
+import logging
+logger = logging.getLogger('bayohwoolph.cogs.basicpromotions')
+
 BASICPROMOTIONS = Config.config['BASICPROMOTIONS']
 
 ROLE_CADET = BASICPROMOTIONS['ROLE_CADET']

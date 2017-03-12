@@ -4,6 +4,9 @@ import discord
 import asyncio
 from config import Config
 
+import logging
+logger = logging.getLogger('bayohwoolph.cogs.alerts')
+
 ALERTS = Config.config['ALERTS']
 
 HIGH_COMMAND = ALERTS['high_command']

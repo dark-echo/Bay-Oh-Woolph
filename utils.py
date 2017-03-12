@@ -1,3 +1,6 @@
+import logging
+logger = logging.getLogger('bayohwoolph.utils')
+
 # Turns a list of members into a nicely formatted string
 def memberlist_to_mentionlist(members):
     mentiontext = ''

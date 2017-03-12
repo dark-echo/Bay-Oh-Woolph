@@ -11,6 +11,9 @@ import asyncio
 
 from config import Config
 
+import logging
+logger = logging.getLogger('bayohwoolph.cogs.points')
+
 POINTS = Config.config['POINTS']
 
 

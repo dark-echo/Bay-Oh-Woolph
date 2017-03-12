@@ -20,11 +20,14 @@ initial_extensions = [
     'cogs.updateroster'
 ]
 
-# logging.basicConfig(level=logging.DEBUG)
-logging.basicConfig(level=logging.INFO)
-
 MAIN = Config.MAIN
 
+# pull debug level from config
+debug = Config.debug
+
+# Create global logger object
+logger = logging.getLogger('bayohwoolph')
+    
 description = '''Dark Echo's barkeep'''
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN.get('commandchar'), '<@&277976387543891968> '), description=description)
@@ -32,18 +35,15 @@ bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN.get('commandch
 @bot.event
 @asyncio.coroutine
 def on_ready():
-    print('Logged in as')
-    print(bot.user.name)
-    print(bot.user.id)
-    print('------')
-
+    logger.info('Logged in as %r (%r)' % (bot.user.name, bot.user.id))
 
 # Everything should go above this
 if __name__ == '__main__':
     for extension in initial_extensions:
         try:
+            logger.debug('Trying to load extension: ' + extension)
             bot.load_extension(extension)
         except Exception as e:
-            print('Failed to load extension {}\n{}: {}'.format(extension, type(e).__name__, e))
+            logger.error('Failed to load extension {}\n{}: {}'.format(extension, type(e).__name__, e))
     bot.run(MAIN.get('login_token'))
 ## Nothing goes after this comment! ##
