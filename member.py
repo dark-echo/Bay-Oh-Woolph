@@ -1,22 +1,57 @@
 #!/usr/bin/python3
+import os
+import sys
+from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
+from sqlalchemy.types import *
+from sqlalchemy import create_engine
+from config import Config
+import _datetime
 
-class Member: 
+Base = declarative_base()
 
+class Member(Base): 
+    __tablename__ = 'member'
 
-#Constuctor that defines properties of member object.
-    def __init__(self,id,globalAccountName,serverNickname,role,points):
+    id = Column(Integer, primary_key=True)
+    globalName = Column(String(250), nullable=False)
+    nickname = Column(String(250), nullable=True)
+    role = Column(String(250), nullable=True)
+    points = Column(Integer, nullable=True, default=0)
+    rankId = Column (Integer, ForeignKey('rank.rankId'))
+    checkInDate = Column (DateTime, nullable=True)
+    nextDate = Column (DateTime, nullable=True)
+    
+
+    def __init__(self,id,globalAccountName,serverNickname,role,rankId):
         self.id = id
-        self.globalAccountName = globalAccountName
-        self.serverNickname = serverNickname
+        self.globalName = globalAccountName
+        self.nickname = serverNickname
         self.role = role
-        self.points = points
+        self.rankId = rankId
+
+
 #Display member method.
     def displayMember(self):
-        print ("ID:", self.id, "GlobalAccount:", self.globalAccountName, "Nickname:", self.serverNickname, "Role:", self.role, "Points:", self.points)
-        
+        print ("ID:", self.id, "GlobalAccount:", self.globalName, "Nickname:", self.nickname, "Role:", self.role)
+
 #Example of creating one object, changing value of an object and displaying an object using a method.
 '''mem1 = Member(43344454,"larry","doessuck","officer",150)
 
 mem1.globalAccountName="Jack"
 
 mem1.displayMember()'''
+
+class Rank(Base):
+    __tablename__ = 'rank'
+    rankId = Column(Integer, primary_key=True)
+    rankName = Column(String(250), nullable=True)
+    pointValue = Column(String(250), nullable=True)
+
+
+
+
+engine = create_engine(Config.MAIN['dbpath'])
+
+Base.metadata.create_all(engine)

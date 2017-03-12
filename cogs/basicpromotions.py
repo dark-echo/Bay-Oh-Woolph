@@ -2,12 +2,20 @@ from discord.ext import commands
 from utils import *
 import discord
 import asyncio
+from cogs.updateroster import UpdateRoster
 
-ROLE_CADET = '146725461727117314'
-ROLE_OFFICER = '146724317785358337'
+from config import Config
 
-CADETS_MESS = '146726509460193281'
-OFFICERS_CLUB = '146726934825533440'
+BASICPROMOTIONS = Config.config['BASICPROMOTIONS']
+
+ROLE_CADET = BASICPROMOTIONS['ROLE_CADET']
+ROLE_OFFICER = BASICPROMOTIONS['ROLE_OFFICER']
+
+CADETS_MESS = BASICPROMOTIONS['CADETS_MESS']
+OFFICERS_CLUB = BASICPROMOTIONS['OFFICERS_CLUB']
+
+ROLE_MEMBER = BASICPROMOTIONS['ROLE_MEMBER']
+
 
 NEWCADETMSG = """**Welcome to Dark Echo, {0}!**
 
@@ -26,7 +34,7 @@ Make sure you get that forum account set up, since that's what we use to track h
 
 Please set an avatar image in Discord, as it greatly helps with telling people apart when using the in-game overlay.
 
-If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the <@&146724062301913088>.
+If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the <146724062301913088>.
 """
 
 NEWOFFICERMSG = """**<:echoBlue:230423421983522816> Welcome to Dark Echo's Officer's Club, {0}!**
@@ -51,9 +59,14 @@ class Basicpromotions:
     
     def __init__(self, bot):
         self.bot = bot
+
+
+
+
+
         
     @commands.command()
-    @commands.has_any_role('Leadership', 'Recruiter')
+    @commands.has_any_role('Leadership','Recruiter')
     @asyncio.coroutine
     def newcadet(self,
         member1  : discord.Member = None, 
@@ -87,9 +100,10 @@ class Basicpromotions:
         filter(None,argmembers)
         members = [i for i in argmembers if i is not None]
 
+        memrole = discord.Object(id=ROLE_MEMBER)
         cadetrole = discord.Object(id=ROLE_CADET)
         for member in members:
-            yield from self.bot.add_roles(member,cadetrole)
+            yield from self.bot.add_roles(member,cadetrole,memrole)
 
         mentiontext = memberlist_to_mentionlist(members)
 

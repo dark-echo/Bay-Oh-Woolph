@@ -1,6 +1,6 @@
 # Project specific stuff
 bayohwoolph.local.ini
-bayohwoolph.db
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -92,6 +92,11 @@ ENV/
 # Rope project settings
 .ropeproject
 
+# database
+/bayohwoolh.db
+bayohwoolph.db
+*.db
+
 # Editor temp files
 *~
 .#*
@@ -99,3 +104,4 @@ DEADJOE
 /Bay-Oh-Woolph.pyproj
 /Bay-Oh-Woolph.sln
 /.vs/Bay-Oh-Woolph/v14/.suo
+/.idea
