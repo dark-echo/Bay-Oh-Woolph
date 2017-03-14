@@ -10,7 +10,7 @@ logger = logging.getLogger('bayohwoolph.cogs.alerts')
 ALERTS = Config.config['ALERTS']
 
 HIGH_COMMAND = ALERTS['high_command']
-LOBBY = ALERTS['lobby']
+WELCOME_ROOM = ALERTS['welcome_room']
 BOT_DEV = ALERTS['bot_dev']
 
 class Alerts:
@@ -21,8 +21,8 @@ class Alerts:
 
     @asyncio.coroutine
     def on_member_join(self, member):
-        botdev = self.bot.get_channel(BOT_DEV)
-        yield from self.bot.send_message(botdev,"Salutations {0.mention}! Welcome to Dark Echo's Discord server. Please speak up and <@&146724062301913088> will get your roles sorted shortly.".format(member))
+        welcomeroom = self.bot.get_channel(WELCOME_ROOM)
+        yield from self.bot.send_message(welcomeroom,"Salutations {0.mention}! Welcome to Dark Echo's Discord server. Please speak up and <@&146724062301913088> will get your roles sorted shortly.".format(member))
 
     @asyncio.coroutine
     def on_member_remove(self, member):
