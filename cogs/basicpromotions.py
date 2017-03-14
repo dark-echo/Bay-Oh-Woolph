@@ -37,7 +37,7 @@ Make sure you get that forum account set up, since that's what we use to track h
 
 Please set an avatar image in Discord, as it greatly helps with telling people apart when using the in-game overlay.
 
-If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the <146724062301913088>.
+If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the <@&146724062301913088>.
 """
 
 NEWOFFICERMSG = """**<:echoBlue:230423421983522816> Welcome to Dark Echo's Officer's Club, {0}!**
