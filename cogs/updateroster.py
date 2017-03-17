@@ -72,7 +72,7 @@ class UpdateRoster:
             else:
                 yield from self.bot.send_message(mod, "DB successfully updated. No new members inserted.")
         except:
-            session.roleback()
+            session.rollback()
         session.close()
 
     #Update Roster on newcadet
@@ -116,7 +116,7 @@ class UpdateRoster:
                     yield from  self.bot.send_message(mod, "DB successfully updated. No new members inserted.")
 
             except:
-                session.roleback()
+                session.rollback()
                 yield from  self.bot.send_message(mod, "Insertion failure")
             session.close()
 
