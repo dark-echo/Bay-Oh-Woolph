@@ -28,10 +28,11 @@ NEWCADETMSG = """**Welcome to Dark Echo, {0}!**
 2. If you use Inara, join us at http://inara.cz/wing/300
 3. In the game, under "Friends and Private Groups", request membership in the "Dark Echo" private group and send "Dark Echo" a friend request.
 4. Send in-game friend requests to the Echoes you see currently active on Discord and/or via in the in-game private group.
-5. Move your primary base of operations (any additional ships, etc) to Snodgrass Orbital in Disci.
-6. Once your forum account is activated, look for "Getting Started" instructions there.
+5. Check <#161529165223428096> for current priorities and <#173601634096644106> for all sorts of useful stuff.
+6. Move your primary base of operations (any additional ships, etc) to Snodgrass Orbital in Disci.
+7. Once your forum account is activated, look for "Getting Started" instructions there.
 
-Note: You cannot get to Disci in a starter sidewinder.  You need a ship with at least a 9.5LY jump range.  Upgrade most components from "E" to "D" rated in a Sidewinder or Eagle or use a Hauler to make it. If you're still having trouble, talk to us and somebody can help.
+Note: You cannot get to Disci in a starter sidewinder.  You need 9.5LY jump range.  Upgrade Sidewinder or Eagle from "E" to "D"; or use a Hauler. If you're still having trouble, talk to us and somebody can help.
 
 Make sure you get that forum account set up, since that's what we use to track how long you've been a Cadet.
 
@@ -52,6 +53,8 @@ A <@&235466370316238848> will update your forum permissions. Once your forum per
 * and also "Ops": <http://www.darkecho.org/forums/viewforum.php?f=9>
 
 If you use Inara, join us at <http://inara.cz/wing/300>
+
+Have you checked out all the useful stuff in <#173601634096644106>?
 
 (Reminder to <@&146724062301913088>: Go do a "!addroster Nickname" in #allies, and update forum groups)
 
