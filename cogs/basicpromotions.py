@@ -19,7 +19,6 @@ OFFICERS_CLUB = BASICPROMOTIONS['OFFICERS_CLUB']
 
 ROLE_MEMBER = BASICPROMOTIONS['ROLE_MEMBER']
 
-
 NEWCADETMSG = """**Welcome to Dark Echo, {0}!**
 
 **<:echoBlue:230423421983522816> Here are the basic steps to get started with Dark Echo: <:echoBlue:230423421983522816>**
@@ -61,16 +60,11 @@ Have you checked out all the useful stuff in <#173601634096644106>?
 """
 
 class Basicpromotions:
-    """Leadership-only commands for promoting to basic membership roles."""
+    """Leadership/Recruiter commands for promoting to basic membership roles."""
     
     def __init__(self, bot):
         self.bot = bot
 
-
-
-
-
-        
     @commands.command()
     @commands.has_any_role('Leadership','Recruiter')
     @asyncio.coroutine

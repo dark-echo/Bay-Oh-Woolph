@@ -26,7 +26,7 @@ conn = Baydb.conn
 
 #Command to Update Roster
 class UpdateRoster:
-
+    """Admin tools for updating bot's internal roster info."""
 
     def __init__(self, bot):
         self.bot = bot
@@ -41,8 +41,6 @@ class UpdateRoster:
         mod = self.bot.get_channel(MOD_LOG)
 
         memberrole = discord.Object(id=ROLE_MEMBER)
-
-
 
         count = 0
         # Intialize array
@@ -63,29 +61,18 @@ class UpdateRoster:
                 stmt = update(Member). \
                     where(Member.id== amember.id). \
                     values(points=  (select([Rank.pointValue])).where(Member.rankId == Rank.rankId and Member.role != "Cadet" and Member.points == 0 | Member.points == null ))
-
                 conn.execute(stmt)
-
-
-
             else:
                 session.add(amember)
                 count = count + 1
-
         try:
             session.commit()
-
-
             if count != 0:
                 yield from self.bot.send_message(mod,"DB successfully updated." + " Number of members inserted: " + str(count))
-
-
             else:
                 yield from self.bot.send_message(mod, "DB successfully updated. No new members inserted.")
-
         except:
             session.roleback()
-
         session.close()
 
     #Update Roster on newcadet
@@ -132,8 +119,6 @@ class UpdateRoster:
                 session.roleback()
                 yield from  self.bot.send_message(mod, "Insertion failure")
             session.close()
-
-
 
 
 def setup(bot):

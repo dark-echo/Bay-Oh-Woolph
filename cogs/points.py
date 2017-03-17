@@ -17,9 +17,9 @@ logger = logging.getLogger('bayohwoolph.cogs.points')
 POINTS = Config.config['POINTS']
 
 
-class Points:
-   
-   
+class Points:   
+    """Tools for tracking rank-related 'points' for Dark Echo Members."""
+
     def __init__(self,bot):
         self.bot = bot
 
@@ -40,7 +40,7 @@ class Points:
     @commands.has_role('Leadership')
     @asyncio.coroutine
     def addpoints(self, member1  : discord.Member=None, pv=None):
-        """Adds points to specified member."""
+        """Add points to specified member."""
 
         amember = member1
         storemember = []
@@ -50,9 +50,6 @@ class Points:
             pointvalue = int(pv)
         except (ValueError, TypeError):
             yield from self.bot.say("Invalid Point Value")
-
-
-
 
         if  pointvalue:
 
@@ -82,19 +79,12 @@ class Points:
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def checkin(self,ctx):
-        """Adds points to specified member."""
+        """Event Checkin and points."""
 
         amember = ctx.message.author
         storemember = []
         points = 0
         #date
-
-
-
-
-
-
-
 
         for member in session.query(Member). \
                 filter(Member.id == amember.id):
@@ -127,12 +117,6 @@ class Points:
 
         else:
             yield from self.bot.say(" No points for you imposter... ")
-
-
-
-
-
-
 
 
 

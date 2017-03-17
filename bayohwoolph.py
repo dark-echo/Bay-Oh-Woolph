@@ -12,7 +12,7 @@ from discord.ext import commands
 # Our specific stuff
 from utils import *
 
-
+# "Cog" extensions loaded a little later
 initial_extensions = [
     'cogs.basicpromotions',
     'cogs.alerts',
@@ -22,7 +22,7 @@ initial_extensions = [
 
 MAIN = Config.MAIN
 
-# pull debug level from config
+# pull debug level from Config class
 debug = Config.debug
 
 # Create global logger object
@@ -39,11 +39,16 @@ def on_ready():
 
 # Everything should go above this
 if __name__ == '__main__':
+
+    # Loop through extensions and load them:
     for extension in initial_extensions:
         try:
             logger.debug('Trying to load extension: ' + extension)
             bot.load_extension(extension)
         except Exception as e:
             logger.error('Failed to load extension {}\n{}: {}'.format(extension, type(e).__name__, e))
+
+    # Start the main execution loop up:
     bot.run(MAIN.get('login_token'))
+
 ## Nothing goes after this comment! ##

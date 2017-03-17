@@ -13,7 +13,9 @@ logger = logging.getLogger('bayohwoolph.member')
 
 Base = declarative_base()
 
-class Member(Base): 
+class Member(Base):
+    """Tracking data about Dark Echo members."""
+
     __tablename__ = 'member'
 
     id = Column(Integer, primary_key=True)
