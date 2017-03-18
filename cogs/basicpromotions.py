@@ -6,6 +6,9 @@ from cogs.updateroster import UpdateRoster
 
 from config import Config
 
+import logging
+logger = logging.getLogger('bayohwoolph.cogs.basicpromotions')
+
 BASICPROMOTIONS = Config.config['BASICPROMOTIONS']
 
 ROLE_CADET = BASICPROMOTIONS['ROLE_CADET']
@@ -13,9 +16,9 @@ ROLE_OFFICER = BASICPROMOTIONS['ROLE_OFFICER']
 
 CADETS_MESS = BASICPROMOTIONS['CADETS_MESS']
 OFFICERS_CLUB = BASICPROMOTIONS['OFFICERS_CLUB']
+BOT_NOISE = BASICPROMOTIONS['bot_noise']
 
 ROLE_MEMBER = BASICPROMOTIONS['ROLE_MEMBER']
-
 
 NEWCADETMSG = """**Welcome to Dark Echo, {0}!**
 
@@ -25,16 +28,17 @@ NEWCADETMSG = """**Welcome to Dark Echo, {0}!**
 2. If you use Inara, join us at http://inara.cz/wing/300
 3. In the game, under "Friends and Private Groups", request membership in the "Dark Echo" private group and send "Dark Echo" a friend request.
 4. Send in-game friend requests to the Echoes you see currently active on Discord and/or via in the in-game private group.
-5. Move your primary base of operations (any additional ships, etc) to Snodgrass Orbital in Disci.
-6. Once your forum account is activated, look for "Getting Started" instructions there.
+5. Check <#161529165223428096> for current priorities and <#173601634096644106> for all sorts of useful stuff.
+6. Move your primary base of operations (any additional ships, etc) to Snodgrass Orbital in Disci.
+7. Once your forum account is activated, look for "Getting Started" instructions there.
 
-Note: You cannot get to Disci in a starter sidewinder.  You need a ship with at least a 9.5LY jump range.  Upgrade most components from "E" to "D" rated in a Sidewinder or Eagle or use a Hauler to make it. If you're still having trouble, talk to us and somebody can help.
+Note: You cannot get to Disci in a starter sidewinder.  You need 9.5LY jump range.  Upgrade Sidewinder or Eagle from "E" to "D"; or use a Hauler. If you're still having trouble, talk to us and somebody can help.
 
 Make sure you get that forum account set up, since that's what we use to track how long you've been a Cadet.
 
 Please set an avatar image in Discord, as it greatly helps with telling people apart when using the in-game overlay.
 
-If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the <146724062301913088>.
+If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the <@&146724062301913088>.
 """
 
 NEWOFFICERMSG = """**<:echoBlue:230423421983522816> Welcome to Dark Echo's Officer's Club, {0}!**
@@ -50,21 +54,18 @@ A <@&235466370316238848> will update your forum permissions. Once your forum per
 
 If you use Inara, join us at <http://inara.cz/wing/300>
 
+Have you checked out all the useful stuff in <#173601634096644106>?
+
 (Reminder to <@&146724062301913088>: Go do a "!addroster Nickname" in #allies, and update forum groups)
 
 """
 
 class Basicpromotions:
-    """Leadership-only commands for promoting to basic membership roles."""
+    """Leadership/Recruiter commands for promoting to basic membership roles."""
     
     def __init__(self, bot):
         self.bot = bot
 
-
-
-
-
-        
     @commands.command()
     @commands.has_any_role('Leadership','Recruiter')
     @asyncio.coroutine
@@ -158,11 +159,14 @@ class Basicpromotions:
         mentiontext = memberlist_to_mentionlist(members)
 
         officersclub = self.bot.get_channel(OFFICERS_CLUB)
+        botnoise = self.bot.get_channel(BOT_NOISE)
 
         # sleep for a second to make sure the role has gone through before sending messages that need it
         yield from asyncio.sleep(1)
 
         yield from self.bot.send_message(officersclub,NEWOFFICERMSG.format(mentiontext))
+
+        yield from self.bot.send_message(botnoise,"!whois -r -d -role 'Officer' -nick")
 
         for member in members:
             yield from self.bot.remove_roles(member,cadetrole)

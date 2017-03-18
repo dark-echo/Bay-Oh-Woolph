@@ -9,23 +9,8 @@ import asyncio
 
 
 class Baydb:
-
     engine = create_engine(Config.MAIN['dbpath'])
     Base.metadata.bind = engine
     DBSession = sessionmaker(bind=engine)
     session = DBSession()
     conn = engine.connect()
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -8,10 +8,14 @@ from sqlalchemy.types import *
 from sqlalchemy import create_engine
 from config import Config
 import _datetime
+import logging
+logger = logging.getLogger('bayohwoolph.member')
 
 Base = declarative_base()
 
-class Member(Base): 
+class Member(Base):
+    """Tracking data about Dark Echo members."""
+
     __tablename__ = 'member'
 
     id = Column(Integer, primary_key=True)
@@ -34,7 +38,7 @@ class Member(Base):
 
 #Display member method.
     def displayMember(self):
-        print ("ID:", self.id, "GlobalAccount:", self.globalName, "Nickname:", self.nickname, "Role:", self.role)
+        logger.info("ID:", self.id, "GlobalAccount:", self.globalName, "Nickname:", self.nickname, "Role:", self.role)
 
 #Example of creating one object, changing value of an object and displaying an object using a method.
 '''mem1 = Member(43344454,"larry","doessuck","officer",150)
