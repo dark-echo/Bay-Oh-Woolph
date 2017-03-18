@@ -16,6 +16,7 @@ ROLE_OFFICER = BASICPROMOTIONS['ROLE_OFFICER']
 
 CADETS_MESS = BASICPROMOTIONS['CADETS_MESS']
 OFFICERS_CLUB = BASICPROMOTIONS['OFFICERS_CLUB']
+BOT_NOISE = BASICPROMOTIONS['bot_noise']
 
 ROLE_MEMBER = BASICPROMOTIONS['ROLE_MEMBER']
 
@@ -158,11 +159,14 @@ class Basicpromotions:
         mentiontext = memberlist_to_mentionlist(members)
 
         officersclub = self.bot.get_channel(OFFICERS_CLUB)
+        botnoise = self.bot.get_channel(BOT_NOISE)
 
         # sleep for a second to make sure the role has gone through before sending messages that need it
         yield from asyncio.sleep(1)
 
         yield from self.bot.send_message(officersclub,NEWOFFICERMSG.format(mentiontext))
+
+        yield from self.bot.send_message(botnoise,"!whois -r -d -role 'Officer' -nick")
 
         for member in members:
             yield from self.bot.remove_roles(member,cadetrole)
