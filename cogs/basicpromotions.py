@@ -103,13 +103,16 @@ class Basicpromotions:
 
         memrole = discord.Object(id=ROLE_MEMBER)
         cadetrole = discord.Object(id=ROLE_CADET)
+
         for member in members:
-            yield from self.bot.add_roles(member,cadetrole,memrole)
+            try:
+                yield from self.bot.add_roles(member,cadetrole,memrole)
+            except Exception as e:
+                yield from self.bot.say('Unable to set Officer role.')
 
         mentiontext = memberlist_to_mentionlist(members)
 
         cadetsmess = self.bot.get_channel(CADETS_MESS)
-
 
         yield from self.bot.send_message(cadetsmess,NEWCADETMSG.format(mentiontext))
         yield from self.bot.say('Go check out <#{}>, '.format(CADETS_MESS) + mentiontext + '.')
@@ -152,14 +155,19 @@ class Basicpromotions:
 
         officerrole = discord.Object(id=ROLE_OFFICER)
         cadetrole = discord.Object(id=ROLE_CADET)
-        
-        for member in members:
-            yield from self.bot.add_roles(member,officerrole)
-
-        mentiontext = memberlist_to_mentionlist(members)
-
         officersclub = self.bot.get_channel(OFFICERS_CLUB)
         botnoise = self.bot.get_channel(BOT_NOISE)
+        
+        for member in members:
+            try:
+                yield from self.bot.add_roles(member,officerrole)
+            except Exception as e:
+                yield from self.bot.say('Unable to set Officer role.')
+
+            cleannick = member_to_clean_nick(member)
+            yield from self.bot.send_message(botnoise, '!addroster ' + cleannick)
+
+        mentiontext = memberlist_to_mentionlist(members)
 
         # sleep for a second to make sure the role has gone through before sending messages that need it
         yield from asyncio.sleep(1)
