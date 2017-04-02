@@ -59,10 +59,13 @@ class UpdateRoster:
             q = session.query(exists().where(Member.id == amember.id)).scalar()
             if q:
                 session.merge(amember)
-                stmt = update(Member). \
-                    where(Member.id== amember.id). \
-                    values(points=  (select([Rank.pointValue])).where(Member.rankId == Rank.rankId and Member.role != "Cadet" and Member.points == 0 | Member.points == null ))
-                conn.execute(stmt)
+                # Rework and put this in a seperate command when points have to be loaded in due to manual rank change.
+                ''' stmt = update(Member). \
+                        where(Member.id == amember.id). \
+                        values(points=(select([Rank.pointValue])).where(
+                        Member.rankId == Rank.rankId and Member.role != "Cadet" and Member.points == 0 | Member.points == null))
+
+                    conn.execute(stmt) '''
             else:
                 session.add(amember)
                 count = count + 1
