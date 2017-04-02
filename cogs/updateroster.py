@@ -38,6 +38,7 @@ class UpdateRoster:
     @asyncio.coroutine
     def updateroster(self):
         """Updates the Database"""
+        conn.begin()
         mod = self.bot.get_channel(MOD_LOG)
 
         memberrole = discord.Object(id=ROLE_MEMBER)
@@ -73,7 +74,9 @@ class UpdateRoster:
                 yield from self.bot.send_message(mod, "DB successfully updated. No new members inserted.")
         except:
             session.rollback()
+            yield from self.bot.send_message(mod, "Insertion failure")
         session.close()
+        conn.close()
 
     #Update Roster on newcadet
     @bot.event
@@ -113,12 +116,13 @@ class UpdateRoster:
                 if count != 0:
                     yield from self.bot.send_message(mod, "DB successfully updated." + " Number of members inserted: " + str(count))
                 else:
-                    yield from  self.bot.send_message(mod, "DB successfully updated. No new members inserted.")
+                    yield from self.bot.send_message(mod, "DB successfully updated. No new members inserted.")
 
             except:
                 session.rollback()
-                yield from  self.bot.send_message(mod, "Insertion failure")
+                yield from self.bot.send_message(mod, "Insertion failure")
             session.close()
+            conn.close()
 
 
 def setup(bot):
