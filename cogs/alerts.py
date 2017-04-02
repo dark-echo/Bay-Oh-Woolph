@@ -11,7 +11,7 @@ ALERTS = Config.config['ALERTS']
 
 HIGH_COMMAND = ALERTS['high_command']
 WELCOME_ROOM = ALERTS['welcome_room']
-BOT_DEV = ALERTS['bot_dev']
+LEAVE_NOTICE_ROOM = ALERTS['leave_notice_room']
 
 class Alerts:
     """Automatic notifications about stuff."""
@@ -22,14 +22,14 @@ class Alerts:
     @asyncio.coroutine
     def on_member_join(self, member):
         welcomeroom = self.bot.get_channel(WELCOME_ROOM)
-        yield from self.bot.send_message(welcomeroom,"Salutations {0.mention}! Welcome to Dark Echo's Discord server. Please speak up and <@&146724062301913088> will get your roles sorted shortly.".format(member))
+        yield from self.bot.send_message(welcomeroom,"Salutations {0.mention}! Welcome to Dark Echo's Discord server. Please speak up and a <@&174254896260972544> or <@&146724062301913088> will help you shortly.".format(member))
 
     @asyncio.coroutine
     def on_member_remove(self, member):
-        botdev = self.bot.get_channel(BOT_DEV)
+        alertroom = self.bot.get_channel(LEAVE_NOTICE_ROOM)
         msg = '<@&146724062301913088> {0.mention} left.'
 
-        yield from self.bot.send_message(botdev,msg.format(member))
+        yield from self.bot.send_message(alertroom,msg.format(member))
         
 def setup(bot):
     bot.add_cog(Alerts(bot))
