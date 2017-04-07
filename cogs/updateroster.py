@@ -47,6 +47,7 @@ class UpdateRoster:
         # Intialize array
         listOfMembers = []
 
+        yield from self.bot.type()
         # Add members to array
         for themember in self.bot.get_all_members():
             arole = [role for role in themember.roles if role.id == memberrole.id]
@@ -72,9 +73,9 @@ class UpdateRoster:
         try:
             session.commit()
             if count != 0:
-                yield from self.bot.send_message(mod,"DB successfully updated." + " Number of members inserted: " + str(count))
+                yield from self.bot.say("DB successfully updated." + " Number of members inserted: " + str(count))
             else:
-                yield from self.bot.send_message(mod, "DB successfully updated. No new members inserted.")
+                yield from self.bot.say("DB successfully updated. No new members inserted.")
         except:
             session.rollback()
             yield from self.bot.send_message(mod, "Insertion failure")
