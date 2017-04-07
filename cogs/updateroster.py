@@ -38,7 +38,7 @@ class UpdateRoster:
     @asyncio.coroutine
     def updateroster(self):
         """Updates the Database"""
-        conn.begin()
+
         mod = self.bot.get_channel(MOD_LOG)
 
         memberrole = discord.Object(id=ROLE_MEMBER)
@@ -48,6 +48,8 @@ class UpdateRoster:
         listOfMembers = []
 
         yield from self.bot.type()
+
+        
         # Add members to array
         for themember in self.bot.get_all_members():
             arole = [role for role in themember.roles if role.id == memberrole.id]
