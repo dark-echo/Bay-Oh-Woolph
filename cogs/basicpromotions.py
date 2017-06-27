@@ -20,7 +20,7 @@ BOT_NOISE = BASICPROMOTIONS['bot_noise']
 
 ROLE_MEMBER = BASICPROMOTIONS['ROLE_MEMBER']
 
-NEWCADETMSG = """**Welcome to Dark Echo, {0}!**
+NEWPCCADETMSG = """**Welcome to Dark Echo, {0}!**
 
 **<:echoBlue:230423421983522816> Here are the basic steps to get started with Dark Echo: <:echoBlue:230423421983522816>**
 
@@ -31,6 +31,7 @@ NEWCADETMSG = """**Welcome to Dark Echo, {0}!**
 5. Check <#161529165223428096> for current priorities and <#173601634096644106> for all sorts of useful stuff.
 6. Move your primary base of operations (any additional ships, etc) to Snodgrass Orbital in Disci.
 7. Once your forum account is activated, look for "Getting Started" instructions there.
+8. Set your ship id to [ECHO] or put [ECHO] in your ship name, whichever you prefer.
 
 Note: You cannot get to Disci in a starter sidewinder.  You need 9.5LY jump range.  Upgrade Sidewinder or Eagle from "E" to "D"; or use a Hauler. If you're still having trouble, talk to us and somebody can help.
 
@@ -39,6 +40,26 @@ Make sure you get that forum account set up, since that's what we use to track h
 Please set an avatar image in Discord, as it greatly helps with telling people apart when using the in-game overlay.
 
 If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the <@&146724062301913088>.
+"""
+
+NEWPS4CADETMSG = """**Welcome to Dark Echo, {0}!**
+
+**<:echoBlue:230423421983522816> Here are the basic steps to get started with Dark Echo: <:echoBlue:230423421983522816>**
+
+1. Sign up for a forum account at <http://darkecho.org/forums/ucp.php?mode=register>
+2. If you use Inara, join us at http://inara.cz/wing/300
+3. In the game, under "Friends and Private Groups", request membership in the "Sgt-Power-Pickle" private group.
+4. Once your forum account is set up, visit <http://darkecho.org/forums/memberlist.php?g=14&mode=group> and send everybody on that list a friend request.
+5. Check <#161529165223428096> for current priorities and <#173601634096644106> for all sorts of useful stuff.
+6. Move your primary base of operations (any additional ships, etc) to Snodgrass Orbital in Disci.
+7. Once your forum account is activated, look for "Getting Started" instructions there.
+8. Set your ship id to [ECHO] or put [ECHO] in your ship name, whichever you prefer.
+
+Note: You cannot get to Disci in a starter sidewinder.  You need 9.5LY jump range.  Upgrade Sidewinder or Eagle from "E" to "D"; or use a Hauler. If you're still having trouble, talk to us and somebody can help.
+
+Make sure you get that forum account set up, since that's what we use to track how long you've been a Cadet.
+
+If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the Leadership.
 """
 
 NEWOFFICERMSG = """**<:echoBlue:230423421983522816> Welcome to Dark Echo's Officer's Club, {0}!**
@@ -69,7 +90,7 @@ class Basicpromotions:
     @commands.command()
     @commands.has_any_role('Leadership','Recruiter')
     @asyncio.coroutine
-    def newcadet(self,
+    def newpccadet(self,
         member1  : discord.Member = None, 
         member2  : discord.Member = None, 
         member3  : discord.Member = None, 
@@ -90,7 +111,7 @@ class Basicpromotions:
         member18 : discord.Member = None, 
         member19 : discord.Member = None, 
         member20 : discord.Member = None ):
-        """Give intro message to new cadet and assign them Cadet role."""
+        """Get new PC platform Cadet started."""
 
         yield from self.bot.type()
 
@@ -114,7 +135,61 @@ class Basicpromotions:
 
         cadetsmess = self.bot.get_channel(CADETS_MESS)
 
-        yield from self.bot.send_message(cadetsmess,NEWCADETMSG.format(mentiontext))
+        yield from self.bot.send_message(cadetsmess,NEWPCCADETMSG.format(mentiontext))
+        yield from self.bot.say('Go check out <#{}>, '.format(CADETS_MESS) + mentiontext + '.')
+
+    @commands.command()
+    @commands.has_any_role('Leadership','Recruiter')
+    @asyncio.coroutine
+    def newps4cadet(self,
+        member1  : discord.Member = None, 
+        member2  : discord.Member = None, 
+        member3  : discord.Member = None, 
+        member4  : discord.Member = None, 
+        member5  : discord.Member = None, 
+        member6  : discord.Member = None, 
+        member7  : discord.Member = None, 
+        member8  : discord.Member = None, 
+        member9  : discord.Member = None, 
+        member10 : discord.Member = None, 
+        member11 : discord.Member = None, 
+        member12 : discord.Member = None, 
+        member13 : discord.Member = None, 
+        member14 : discord.Member = None, 
+        member15 : discord.Member = None, 
+        member16 : discord.Member = None, 
+        member17 : discord.Member = None, 
+        member18 : discord.Member = None, 
+        member19 : discord.Member = None, 
+        member20 : discord.Member = None ):
+        """Get new Playstation4 platform Cadet started."""
+
+        yield from self.bot.type()
+
+        # pull all the arguments into an array
+        argmembers = [member1, member2, member3, member4, member5, member6, member7, member8, member9, member10, member11, member12, member13, member14, member15, member16, member17, member18, member19, member20 ]
+
+        # and then filter out the None/empty items, so that we have only an array of things actually mentioned
+        filter(None,argmembers)
+        members = [i for i in argmembers if i is not None]
+
+        memrole = discord.Object(id=ROLE_MEMBER)
+        cadetrole = discord.Object(id=ROLE_CADET)
+        ps4role = discord.Object(id=ROLE_PS4)
+
+        for member in members:
+            try:
+                yield from self.bot.add_roles(member,cadetrole,memrole,ps4role)
+            except Exception as e:
+                yield from self.bot.say('Unable to set Officer role.')
+
+        mentiontext = memberlist_to_mentionlist(members)
+
+        cadetsmess = self.bot.get_channel(CADETS_MESS)
+        ps4room    = self.bot.get_channel(PS4_ROOM)
+
+        yield from self.bot.send_message(cadetsmess,NEWPS4CADETMSG.format(mentiontext))
+        yield from self.bot.send_message(ps4room,'<@&269222564826447872> Please send an in-game friend request to ' + mentiontext)
         yield from self.bot.say('Go check out <#{}>, '.format(CADETS_MESS) + mentiontext + '.')
         
 
