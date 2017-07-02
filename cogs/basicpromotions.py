@@ -50,7 +50,7 @@ NEWPS4CADETMSG = """**Welcome to Dark Echo, {0}!**
 
 1. Sign up for a forum account at <http://darkecho.org/forums/ucp.php?mode=register>
 2. If you use Inara, join us at http://inara.cz/wing/300
-3. In the game, under "Friends and Private Groups", request membership in the "Sgt-Power-Pickle" private group.
+3. In the game, under "Friends and Private Groups", request membership in the "Elite-DarkEcho" private group.
 4. Once your forum account is set up, visit <http://darkecho.org/forums/memberlist.php?g=14&mode=group> and send everybody on that list a friend request.
 5. Check <#161529165223428096> for current priorities and <#173601634096644106> for all sorts of useful stuff.
 6. Move your primary base of operations (any additional ships, etc) to Snodgrass Orbital in Disci.
