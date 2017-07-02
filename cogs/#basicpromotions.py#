@@ -177,7 +177,7 @@ class Basicpromotions:
         filter(None,argmembers)
         members = [i for i in argmembers if i is not None]
 
-        memrole = discord.Object(id=ROLE_MEMBER)
+        = discord.Object(id=ROLE_MEMBER)
         cadetrole = discord.Object(id=ROLE_CADET)
         ps4role = discord.Object(id=ROLE_PS4)
         ps4cadet = discord.Object(id=ROLE_PS4CADET)
