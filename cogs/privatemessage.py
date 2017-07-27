@@ -21,7 +21,7 @@ class PrivateMessage:
        self.bot = bot 
 
    @commands.command()
-   @commands.has_role('Leadership')
+   @commands.has_role('Fleet Admiral')
    @asyncio.coroutine
    def sendmessage(self,*args): 
        """Sends message to all members via dm""" 
