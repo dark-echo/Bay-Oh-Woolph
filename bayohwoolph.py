@@ -17,7 +17,8 @@ initial_extensions = [
     'cogs.basicpromotions',
     'cogs.alerts',
     'cogs.points',
-    'cogs.updateroster'
+    'cogs.updateroster',
+    'cogs.privatemessage'
 ]
 
 MAIN = Config.MAIN
@@ -36,7 +37,7 @@ bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN.get('commandch
 @asyncio.coroutine
 def on_ready():
     logger.info('Logged in as %r (%r)' % (bot.user.name, bot.user.id))
-
+    yield from bot.change_presence(game=discord.Game(name="Serving Drinks for DE"))
 # Everything should go above this
 if __name__ == '__main__':
 

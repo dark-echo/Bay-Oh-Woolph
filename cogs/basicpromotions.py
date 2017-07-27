@@ -15,9 +15,12 @@ ROLE_CADET = BASICPROMOTIONS['ROLE_CADET']
 ROLE_OFFICER = BASICPROMOTIONS['ROLE_OFFICER']
 ROLE_PS4 = BASICPROMOTIONS['ROLE_PS4']
 ROLE_PS4CADET = BASICPROMOTIONS['ROLE_PS4CADET']
+ROLE_XBOX = BASICPROMOTIONS['ROLE_XBOX']
+ROLE_XBOXCADET = BASICPROMOTIONS['ROLE_XBOXCADET']
 
 CADETS_MESS = BASICPROMOTIONS['CADETS_MESS']
 PS4_ROOM = BASICPROMOTIONS['PS4_ROOM']
+XBOX_ROOM = BASICPROMOTIONS['XBOX_ROOM']
 OFFICERS_CLUB = BASICPROMOTIONS['OFFICERS_CLUB']
 BOT_NOISE = BASICPROMOTIONS['bot_noise']
 
@@ -54,6 +57,27 @@ NEWPS4CADETMSG = """**Welcome to Dark Echo, {0}!**
 3. Send a PSN friend request to "Elite-DarkEcho".
 3. Once PSN friend request is accepted: In the game, under "Friends and Private Groups",Send a friend request and request membership in the "Elite-DarkEcho" private group.
 4. Once your forum account is set up, visit <http://darkecho.org/forums/memberlist.php?g=14&mode=group> and send everybody on that list a friend request.
+5. Check <#161529165223428096> for current priorities and <#173601634096644106> for all sorts of useful stuff.
+6. Move your primary base of operations (any additional ships, etc) to Snodgrass Orbital in Disci.
+7. Once your forum account is activated, look for "Getting Started" instructions there.
+8. Set your ship id to [ECHO] or put [ECHO] in your ship name, whichever you prefer.
+
+Note: You cannot get to Disci in a starter sidewinder.  You need 9.5LY jump range.  Upgrade Sidewinder or Eagle from "E" to "D"; or use a Hauler. If you're still having trouble, talk to us and somebody can help.
+
+Make sure you get that forum account set up, since that's what we use to track how long you've been a Cadet.
+
+If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the Leadership.
+"""
+
+NEWXBOXCADETMSG = """**Welcome to Dark Echo, {0}!**
+
+**<:echoBlue:230423421983522816> Here are the basic steps to get started with Dark Echo: <:echoBlue:230423421983522816>**
+
+1. Sign up for a forum account at <http://darkecho.org/forums/ucp.php?mode=register>
+2. If you use Inara, join us at http://inara.cz/wing/300
+3. Send a XBOX Live friend request to "ED Dark Echo" and join the "Dark Echo" club.
+3. Once XBOX Live friend request is accepted: In the game, under "Friends and Private Groups",request membership in the "ED Dark Echo" private group.
+4. Once your forum account is set up, visit <http://darkecho.org/forums/memberlist.php?g=15&mode=group> and send everybody on that list a friend request.
 5. Check <#161529165223428096> for current priorities and <#173601634096644106> for all sorts of useful stuff.
 6. Move your primary base of operations (any additional ships, etc) to Snodgrass Orbital in Disci.
 7. Once your forum account is activated, look for "Getting Started" instructions there.
@@ -196,7 +220,63 @@ class Basicpromotions:
         yield from self.bot.send_message(cadetsmess,NEWPS4CADETMSG.format(mentiontext))
         yield from self.bot.send_message(ps4room,'<@&269222564826447872> Please send an in-game friend request to ' + mentiontext)
         yield from self.bot.say('Go check out <#{}>, '.format(CADETS_MESS) + mentiontext + '.')
-        
+      
+    @commands.command()
+    @commands.has_any_role('Leadership','Recruiter')
+    @asyncio.coroutine
+    def newxboxcadet(self,
+        member1  : discord.Member = None,
+        member2  : discord.Member = None,
+        member3  : discord.Member = None,
+        member4  : discord.Member = None,
+        member5  : discord.Member = None,
+        member6  : discord.Member = None,
+        member7  : discord.Member = None,
+        member8  : discord.Member = None,
+        member9  : discord.Member = None,
+        member10 : discord.Member = None,
+        member11 : discord.Member = None,
+        member12 : discord.Member = None,
+        member13 : discord.Member = None,
+        member14 : discord.Member = None,
+        member15 : discord.Member = None,
+        member16 : discord.Member = None,
+        member17 : discord.Member = None,
+        member18 : discord.Member = None,
+        member19 : discord.Member = None,
+        member20 : discord.Member = None ):
+        """Get new xbox  platform Cadet started."""
+
+        yield from self.bot.type()
+
+        # pull all the arguments into an array
+        argmembers = [member1, member2, member3, member4, member5, member6, member7, member8, member9, member10, member11, member12, member13, member14, member15, member16, member17, member18, member19, member20 ]
+
+        # and then filter out the None/empty items, so that we have only an array of things actually mentioned
+        filter(None,argmembers)
+        members = [i for i in argmembers if i is not None]
+
+        memrole = discord.Object(id=ROLE_MEMBER)
+        cadetrole = discord.Object(id=ROLE_CADET)
+        xboxrole = discord.Object(id=ROLE_XBOX)
+        xboxcadet = discord.Object(id=ROLE_XBOXCADET)
+
+        for member in members:
+            try:
+                yield from self.bot.add_roles(member,cadetrole,memrole,xboxrole,xboxcadet)
+            except Exception as e:
+                yield from self.bot.say('Unable to set Officer role.')
+
+        mentiontext = memberlist_to_mentionlist(members)
+
+        cadetsmess = self.bot.get_channel(CADETS_MESS)
+        xboxroom    = self.bot.get_channel(XBOX_ROOM)
+
+        yield from self.bot.send_message(cadetsmess,NEWXBOXCADETMSG.format(mentiontext))
+        yield from self.bot.send_message(xboxroom,'<@&161285579894554635> Please send an in-game friend request to ' + mentiontext)
+        yield from self.bot.say('Go check out <#{}>, '.format(CADETS_MESS) + mentiontext + '.')
+
+  
 
     @commands.command()
     @commands.has_role('Leadership')
