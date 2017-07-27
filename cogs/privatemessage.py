@@ -26,20 +26,23 @@ class PrivateMessage:
    def sendmessage(self): 
        """Sends message to all members via dm""" 
 
-       memberrole = discord.Object(id-ROLE_MEMBER)
+       memberrole = discord.Object(id=ROLE_MEMBER)
        
        mod = self.bot.get_channel(MOD_LOG) 
 
        yield from self.bot.type() 
    
        for themember in self.bot.get_all_members():
-           arole = [role for role in themember.roles if role.id == memberrole.id] 
-           if arole:
-               if arole[0].id == memberrole.id: 
-                   yield from self.bot.send_message(themember, "Dark Echo now has a multi game server!!! Check it out: https://discord.me/demg")
-                   yield from self.bot.send_message(mod, "Message successfully sent to: "+str(themember.name))
-            
-              
+           try:
+               arole = [role for role in themember.roles if role.id == memberrole.id] 
+               if arole:
+                   if arole[0].id == memberrole.id: 
+                       yield from self.bot.send_message(themember, "*Sorry for the repeats this should be the last time.* Dark Echo now has a multi game server!!! Check it out: https://discord.me/demg")
+                       yield from self.bot.send_message(mod, "Message successfully sent to: "+str(themember.name))
+           except:
+              yield from self.bot.send_message(mod, "Message failed to deliver: "+str(themember.name))           
+              continue 
+
 def setup(bot): 
     bot.add_cog(PrivateMessage(bot)) 
 

@@ -51,5 +51,5 @@ if __name__ == '__main__':
 
     # Start the main execution loop up:
     bot.run(MAIN.get('login_token'))
-
+    bot.close() 
 ## Nothing goes after this comment! ##
