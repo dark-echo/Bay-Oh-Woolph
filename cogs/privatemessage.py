@@ -23,7 +23,7 @@ class PrivateMessage:
    @commands.command()
    @commands.has_role('Leadership')
    @asyncio.coroutine
-   def sendmessage(self): 
+   def sendmessage(self,*args): 
        """Sends message to all members via dm""" 
 
        memberrole = discord.Object(id=ROLE_MEMBER)
@@ -37,7 +37,7 @@ class PrivateMessage:
                arole = [role for role in themember.roles if role.id == memberrole.id] 
                if arole:
                    if arole[0].id == memberrole.id: 
-                       yield from self.bot.send_message(themember, "*Sorry for the repeats this should be the last time.* Dark Echo now has a multi game server!!! Check it out: https://discord.me/demg")
+                       yield from self.bot.send_message(themember, str(' '.join(args)))
                        yield from self.bot.send_message(mod, "Message successfully sent to: "+str(themember.name))
            except:
               yield from self.bot.send_message(mod, "Message failed to deliver: "+str(themember.name))           
