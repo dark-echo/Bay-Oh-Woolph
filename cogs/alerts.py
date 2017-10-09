@@ -11,7 +11,7 @@ ALERTS = Config.config['ALERTS']
 
 HIGH_COMMAND = ALERTS['high_command']
 WELCOME_ROOM = ALERTS['welcome_room']
-LEAVE_NOTICE_ROOM = ALERTS['leave_notice_room']
+LEAVE_NOTICE_ROOM = ALERTS['MOD_LOG']
 
 class Alerts:
     """Automatic notifications about stuff."""

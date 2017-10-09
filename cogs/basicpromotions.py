@@ -17,6 +17,7 @@ ROLE_PS4 = BASICPROMOTIONS['ROLE_PS4']
 ROLE_PS4CADET = BASICPROMOTIONS['ROLE_PS4CADET']
 ROLE_XBOX = BASICPROMOTIONS['ROLE_XBOX']
 ROLE_XBOXCADET = BASICPROMOTIONS['ROLE_XBOXCADET']
+ROLE_PC = BASICPROMOTIONS['ROLE_PC'] 
 
 CADETS_MESS = BASICPROMOTIONS['CADETS_MESS']
 PS4_ROOM = BASICPROMOTIONS['PS4_ROOM']
@@ -37,15 +38,16 @@ NEWPCCADETMSG = """**Welcome to Dark Echo, {0}!**
 5. Check <#161529165223428096> for current priorities and <#173601634096644106> for all sorts of useful stuff.
 6. Move your primary base of operations (any additional ships, etc) to Snodgrass Orbital in Disci.
 7. Once your forum account is activated, look for "Getting Started" instructions there.
-8. Set your ship id to [ECHO] or put [ECHO] in your ship name, whichever you prefer.
+8. Set your ship id to [ECHO] or put [ECHO] in your ship name, whichever you prefer. 
+9. If you would like a mentor, in <#358613424420290562> use the ?ranks command to list the ranks. Then assign yourself a mentee role using ?rank. __*Abecedarian*__ for beginners or __*Pupil*__ for those more experienced.   
 
 Note: You cannot get to Disci in a starter sidewinder.  You need 9.5LY jump range.  Upgrade Sidewinder or Eagle from "E" to "D"; or use a Hauler. If you're still having trouble, talk to us and somebody can help.
 
-Make sure you get that forum account set up, since that's what we use to track how long you've been a Cadet.
+Make sure you get that forum account set up, since that's what we use to track how long you've been a Cadet. Also check your welcome email, there is an optional and yet fun way to make your trip to Disci worthwhile.
 
 Please set an avatar image in Discord, as it greatly helps with telling people apart when using the in-game overlay.
 
-If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the <@&146724062301913088>.
+If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the  Leadership.
 """
 
 NEWPS4CADETMSG = """**Welcome to Dark Echo, {0}!**
@@ -61,10 +63,13 @@ NEWPS4CADETMSG = """**Welcome to Dark Echo, {0}!**
 6. Move your primary base of operations (any additional ships, etc) to Snodgrass Orbital in Disci.
 7. Once your forum account is activated, look for "Getting Started" instructions there.
 8. Set your ship id to [ECHO] or put [ECHO] in your ship name, whichever you prefer.
+9. If you would like a mentor, in <#358613424420290562> use the ?ranks command to list the ranks. Then assign yourself a mentee role using ?rank. __*Abecedarian*__ for beginners or __*Pupil*__ for those more experienced.
+
+
 
 Note: You cannot get to Disci in a starter sidewinder.  You need 9.5LY jump range.  Upgrade Sidewinder or Eagle from "E" to "D"; or use a Hauler. If you're still having trouble, talk to us and somebody can help.
 
-Make sure you get that forum account set up, since that's what we use to track how long you've been a Cadet.
+Make sure you get that forum account set up, since that's what we use to track how long you've been a Cadet. Also check your welcome email, there is an optional and yet fun way to make your trip to Disci worthwhile.
 
 If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the Leadership.
 """
@@ -82,10 +87,13 @@ NEWXBOXCADETMSG = """**Welcome to Dark Echo, {0}!**
 6. Move your primary base of operations (any additional ships, etc) to Snodgrass Orbital in Disci.
 7. Once your forum account is activated, look for "Getting Started" instructions there.
 8. Set your ship id to [ECHO] or put [ECHO] in your ship name, whichever you prefer.
+9. If you would like a mentor, in <#358613424420290562> use the ?ranks command to list the ranks. Then assign yourself a mentee role using ?rank. __*Abecedarian*__ for beginners or __*Pupil*__ for those more experienced.
+
+
 
 Note: You cannot get to Disci in a starter sidewinder.  You need 9.5LY jump range.  Upgrade Sidewinder or Eagle from "E" to "D"; or use a Hauler. If you're still having trouble, talk to us and somebody can help.
 
-Make sure you get that forum account set up, since that's what we use to track how long you've been a Cadet.
+Make sure you get that forum account set up, since that's what we use to track how long you've been a Cadet. Also check your welcome email, there is an optional and yet fun way to make your trip to Disci worthwhile.
 
 If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the Leadership.
 """
@@ -152,10 +160,11 @@ class Basicpromotions:
 
         memrole = discord.Object(id=ROLE_MEMBER)
         cadetrole = discord.Object(id=ROLE_CADET)
+        pcrole = discord.Object(id=ROLE_PC) 
 
         for member in members:
             try:
-                yield from self.bot.add_roles(member,cadetrole,memrole)
+                yield from self.bot.add_roles(member,cadetrole,memrole,pcrole)
             except Exception as e:
                 yield from self.bot.say('Unable to set Officer role.')
 
