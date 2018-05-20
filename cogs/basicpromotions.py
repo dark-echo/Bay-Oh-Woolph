@@ -154,9 +154,9 @@ class Basicpromotions:
 
         for member in members:
             try:
-                await member.add_roles(member,cadetrole,memrole,pcrole)
+               await member.add_roles(cadetrole,memrole,pcrole)
             except Exception as e:
-                await ctx.send('Unable to set PC Cadet role.')
+               await ctx.send('Unable to set PC Cadet role.')
 
         mentiontext = memberlist_to_mentionlist(members)
 
@@ -206,7 +206,7 @@ class Basicpromotions:
 
         for member in members:
             try:
-                await member.add_roles(member,cadetrole,memrole,ps4role,ps4cadet)
+                await member.add_roles(cadetrole,memrole,ps4role,ps4cadet)
             except Exception as e:
                 await ctx.send('Unable to set PS4 Cadet role.')
 
@@ -258,7 +258,7 @@ class Basicpromotions:
 
         for member in members:
             try:
-                await member.add_roles(member,cadetrole,memrole,xboxrole,xboxcadet)
+                await member.add_roles(cadetrole,memrole,xboxrole,xboxcadet)
             except Exception as e:
                 await ctx.send('Unable to set Xbox Cadet role.')
 
@@ -318,16 +318,16 @@ class Basicpromotions:
                 await ctx.send('Unable to set Officer role.')
 
             cleannick = member_to_clean_nick(member)
-            #await botnoise.send('!addroster ' + cleannick)
+            await botnoise.send('!addroster ' + cleannick)
 
         mentiontext = memberlist_to_mentionlist(members)
 
         # sleep for a second to make sure the role has gone through before sending messages that need it
         await asyncio.sleep(1)
 
-        #await officersclub.send(NEWOFFICERMSG.format(mentiontext))
+        await officersclub.send(NEWOFFICERMSG.format(mentiontext))
 
-        #await botnoise.send("!whois -r -d -role 'Officer' -nick")
+        await botnoise.send("!whois -r -d -role 'Officer' -nick")
 
         for member in members:
             await member.remove_roles(cadetrole)
