@@ -253,8 +253,8 @@ class Basicpromotions:
 
         memrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_MEMBER))
         cadetrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_CADET))
-        xboxrole = discord.utils.get(ctx.guild.roles, name=int(ROLE_XBOX))
-        xboxcadet = discord.utils.get(ctx.guild.roles, name=int(ROLE_XBOXCADET))
+        xboxrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_XBOX))
+        xboxcadet = discord.utils.get(ctx.guild.roles, id=int(ROLE_XBOXCADET))
 
         for member in members:
             try:
