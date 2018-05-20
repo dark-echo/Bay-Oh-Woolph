@@ -27,7 +27,7 @@ class Alerts:
     @asyncio.coroutine
     def on_member_remove(self, member):
         alertroom = self.bot.get_channel(LEAVE_NOTICE_ROOM)
-        msg = '<@&146724062301913088> {0.mention} left.'
+        msg = '<{0.mention} left.'
 
         yield from self.bot.send_message(alertroom,msg.format(member))
         

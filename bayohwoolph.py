@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python3.6
 # General libraries
 import asyncio
 import discord
@@ -18,7 +18,9 @@ initial_extensions = [
     'cogs.alerts',
     'cogs.points',
     'cogs.updateroster',
-    'cogs.privatemessage'
+    'cogs.privatemessage',
+    'cogs.memberinfo',
+    'cogs.utility'
 ]
 
 MAIN = Config.MAIN
