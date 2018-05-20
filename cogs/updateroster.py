@@ -35,19 +35,18 @@ class UpdateRoster:
 
     @commands.command()
     @commands.has_role('Leadership')
-    @asyncio.coroutine
-    def updateroster(self,ctx):
+    async def updateroster(self,ctx):
         """Updates the Database"""
 
-        mod = self.bot.get_channel(MOD_LOG)
+        mod = self.bot.get_channel(int(MOD_LOG))
 
-        memberrole = discord.Object(id=ROLE_MEMBER)
+        memberrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_MEMBER))
 
         count = 0
         # Intialize array
         listOfMembers = []
 
-        yield from self.bot.type()
+        await ctx.invoke_typing()
 
         
         # Add members to array
@@ -75,24 +74,23 @@ class UpdateRoster:
         try:
             session.commit()
             if count != 0:
-                yield from self.bot.say("DB successfully updated." + " Number of members inserted: " + str(count))
+                await ctx.send("DB successfully updated." + " Number of members inserted: " + str(count))
             else:
-                yield from self.bot.say("DB successfully updated. No new members inserted.")
+                await ctx.send("DB successfully updated. No new members inserted.")
         except:
             session.rollback()
-            yield from self.bot.send_message(mod, "Insertion failure")
+            await mod.send("Insertion failure")
         session.close()
         conn.close()
 
     #Update Roster on newcadet, newpccadet, newps4cadet, newofficer, etc...
     @bot.event
-    @asyncio.coroutine
-    def on_message(self,message):
-        mod = self.bot.get_channel(MOD_LOG)
+    async def on_message(self,ctx, message):
+        mod = self.bot.get_channel(int(MOD_LOG))
 
         if message.content.startswith('$new'):
-            yield from asyncio.sleep(5)
-            memberrole = discord.Object(id=ROLE_MEMBER)
+            await asyncio.sleep(5)
+            memberrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_MEMBER))
 
             count = 0
             # Intialize array
@@ -120,13 +118,13 @@ class UpdateRoster:
 
 
                 if count != 0:
-                    yield from self.bot.send_message(mod, "DB successfully updated." + " Number of members inserted: " + str(count))
+                    await mod.send("DB successfully updated." + " Number of members inserted: " + str(count))
                 else:
-                    yield from self.bot.send_message(mod, "DB successfully updated. No new members inserted.")
+                    await mod.send("DB successfully updated. No new members inserted.")
 
             except:
                 session.rollback()
-                yield from self.bot.send_message(mod, "Insertion failure")
+                await mod.send("Insertion failure")
             session.close()
             conn.close()
 

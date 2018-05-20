@@ -38,8 +38,7 @@ class Points:
     #Add points command
     @commands.command()
     @commands.has_role('Leadership')
-    @asyncio.coroutine
-    def addpoints(self, member1  : discord.Member=None, pv=None):
+    async def addpoints(self, ctx, member1  : discord.Member=None, pv=None):
         """Add points to specified member."""
 
         amember = member1
@@ -49,11 +48,11 @@ class Points:
         try:
             pointvalue = int(pv)
         except (ValueError, TypeError):
-            yield from self.bot.say("Invalid Point Value")
+            await ctx.send("Invalid Point Value")
 
         if  pointvalue:
 
-            yield from self.bot.type()
+            await ctx.trigger_typing()
 
             for member in session.query(Member). \
                     filter(Member.id == amember.id):
@@ -68,17 +67,16 @@ class Points:
                 session.commit()
                 session.close()
 
-                yield from self.bot.say(
+                await ctx.send(
                     "You have gained " + str(pointvalue) + " point(s) {0.mention}!".format(amember) + " Total points: " + str(
                         points))
 
             else:
-                yield from self.bot.say(" No points for you imposter... ")
+                ctx.send(" No points for you imposter... ")
 
     # Event Checkin
     @commands.command(pass_context=True)
-    @asyncio.coroutine
-    def checkin(self,ctx):
+    async def checkin(self,ctx):
         """Event Checkin and points."""
 
         amember = ctx.message.author
@@ -104,19 +102,19 @@ class Points:
             result = conn.execute(checkdate)
 
             if checkdate == dateparams[0] or checkdate == dateparams[1]:
-                yield from self.bot.type()
+                ctx.trigger_typing()
 
                 session.query(Member).filter_by(id=amember.id).update({"points": points})
                 session.commit()
                 session.close()
 
-                yield from self.bot.say(
+                await ctx.send(
                     "You have gained a checkin point {0.mention}!".format(
                         amember) + " Total points: " + str(
                         points))
 
         else:
-            yield from self.bot.say(" No points for you imposter... ")
+            await ctx.send(" No points for you imposter... ")
 
 
 

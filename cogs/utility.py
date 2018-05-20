@@ -27,8 +27,7 @@ class Utility:
 
     #Add points command
     @commands.command()
-    @asyncio.coroutine
-    def gametime(self,ctx):
+    async def gametime(self,ctx):
         '''Displays gametime in Elite Dangerous'''
         
 
@@ -37,7 +36,7 @@ class Utility:
 
         milutcnow = _datetime.datetime.utcnow().strftime("%H:%M:%S")
 
-        yield from self.bot("Time in Elite Dangerous(*Military Time*): **"+milutcnow+"**")
+        await ctx.send("Time in Elite Dangerous(*Military Time*): **"+milutcnow+"**")
  
         
         

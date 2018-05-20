@@ -22,26 +22,25 @@ class PrivateMessage:
 
    @commands.command()
    @commands.has_any_role('Admin')
-   @asyncio.coroutine
-   def sendmessage(self,*args): 
-       """Sends message to all members via dm""" 
+   async def sendmessage(self, ctx, *args):
+       """Sends message to all members via dm"""
 
-       memberrole = discord.Object(id=ROLE_MEMBER)
+       memberrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_MEMBER))
        
-       mod = self.bot.get_channel(MOD_LOG) 
+       mod = self.bot.get_channel(int(MOD_LOG))
 
-       yield from self.bot.type() 
-   
+       await ctx.trigger_typing()
+
        for themember in self.bot.get_all_members():
            try:
                arole = [role for role in themember.roles if role.id == memberrole.id] 
                if arole:
                    if arole[0].id == memberrole.id: 
-                       yield from self.bot.send_message(themember, str(' '.join(args)))
-                       yield from self.bot.send_message(mod, "Message successfully sent to: "+str(themember.name))
+                       await themember.send( str(' '.join(args)))
+                       await mod.send("Message successfully sent to: "+str(themember.name))
            except:
-              yield from self.bot.send_message(mod, "Message failed to deliver: "+str(themember.name))           
-              continue 
+               await mod.send("Message failed to deliver: "+str(themember.name))
+               continue
 
 def setup(bot): 
     bot.add_cog(PrivateMessage(bot)) 

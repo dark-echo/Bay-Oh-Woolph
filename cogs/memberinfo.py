@@ -27,7 +27,7 @@ conn = Baydb.conn
 
 #Command to Update Roster
 class MemberInfo:
-    """Admin tools for updating bot's internal roster info."""
+    """Admin tools for updating bot's internal roster info. WIP"""
 
     def __init__(self, bot):
         self.bot = bot
@@ -40,8 +40,7 @@ class MemberInfo:
 
     @commands.command()
     @commands.has_role('Leadership')
-    @asyncio.coroutine
-    def whois(self,ctx):
+    async def whois(self,ctx):
         """Search for a member."""
 
         memattribute = ctx 
@@ -49,8 +48,8 @@ class MemberInfo:
         query = session.query(Member).filter(or_(Member.id.like(memattribute),Member.globalName.like(memattribute),Member.nickname.like(memattribute)))
         for themember in query:
           #Will be fixed.
-           member = str(themember.name)
-           yield from self.bot.say("Member Info: " + str(member)) 
+          member = str(themember.name)
+          await ctx.send("Member Info: " + str(member))
 
 
 
