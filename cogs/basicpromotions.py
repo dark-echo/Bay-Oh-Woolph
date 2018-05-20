@@ -154,9 +154,9 @@ class Basicpromotions:
 
         for member in members:
             try:
-                await self.bot.add_roles(member,cadetrole,memrole,pcrole)
+                await member.add_roles(member,cadetrole,memrole,pcrole)
             except Exception as e:
-                await ctx.send('Unable to set Officer role.')
+                await ctx.send('Unable to set PC Cadet role.')
 
         mentiontext = memberlist_to_mentionlist(members)
 
@@ -206,9 +206,9 @@ class Basicpromotions:
 
         for member in members:
             try:
-                await self.bot.add_roles(member,cadetrole,memrole,ps4role,ps4cadet)
+                await member.add_roles(member,cadetrole,memrole,ps4role,ps4cadet)
             except Exception as e:
-                await self.bot.say('Unable to set Officer role.')
+                await ctx.send('Unable to set PS4 Cadet role.')
 
         mentiontext = memberlist_to_mentionlist(members)
 
@@ -258,9 +258,9 @@ class Basicpromotions:
 
         for member in members:
             try:
-                await self.bot.add_roles(member,cadetrole,memrole,xboxrole,xboxcadet)
+                await member.add_roles(member,cadetrole,memrole,xboxrole,xboxcadet)
             except Exception as e:
-                await self.bot.say('Unable to set Officer role.')
+                await ctx.send('Unable to set Xbox Cadet role.')
 
         mentiontext = memberlist_to_mentionlist(members)
 
