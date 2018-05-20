@@ -148,9 +148,9 @@ class Basicpromotions:
         filter(None,argmembers)
         members = [i for i in argmembers if i is not None]
 
-        memrole = discord.Object(id=ROLE_MEMBER)
-        cadetrole = discord.Object(id=ROLE_CADET)
-        pcrole = discord.Object(id=ROLE_PC) 
+        memrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_MEMBER))
+        cadetrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_CADET))
+        pcrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_PC))
 
         for member in members:
             try:
@@ -199,10 +199,10 @@ class Basicpromotions:
         filter(None,argmembers)
         members = [i for i in argmembers if i is not None]
 
-        memrole = discord.Object(id=ROLE_MEMBER)
-        cadetrole = discord.Object(id=ROLE_CADET)
-        ps4role = discord.Object(id=ROLE_PS4)
-        ps4cadet = discord.Object(id=ROLE_PS4CADET)
+        memrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_MEMBER))
+        cadetrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_CADET))
+        ps4role =  discord.utils.get(ctx.guild.roles, id=int(ROLE_PS4))
+        ps4cadet =  discord.utils.get(ctx.guild.roles, id=int(ROLE_PS4CADET))
 
         for member in members:
             try:
@@ -251,10 +251,10 @@ class Basicpromotions:
         filter(None,argmembers)
         members = [i for i in argmembers if i is not None]
 
-        memrole = discord.Object(id=ROLE_MEMBER)
-        cadetrole = discord.Object(id=ROLE_CADET)
-        xboxrole = discord.Object(id=ROLE_XBOX)
-        xboxcadet = discord.Object(id=ROLE_XBOXCADET)
+        memrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_MEMBER))
+        cadetrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_CADET))
+        xboxrole = discord.utils.get(ctx.guild.roles, name=int(ROLE_XBOX))
+        xboxcadet = discord.utils.get(ctx.guild.roles, name=int(ROLE_XBOXCADET))
 
         for member in members:
             try:
@@ -306,31 +306,31 @@ class Basicpromotions:
         filter(None,argmembers)
         members = [i for i in argmembers if i is not None]
 
-        officerrole = discord.utils.get(ctx.guild.roles, name="Officer")
-        cadetrole = discord.utils.get(ctx.guild.roles, name="Cadet")
+        officerrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_OFFICER))
+        cadetrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_CADET))
         botnoise = self.bot.get_channel(int(BOT_NOISE))
         officersclub = self.bot.get_channel(int(OFFICERS_CLUB))
         
         for member in members:
             try:
-                await member.add_roles(officerrole.id)
+                await member.add_roles(officerrole)
             except Exception as e:
                 await ctx.send('Unable to set Officer role.')
 
             cleannick = member_to_clean_nick(member)
-            await botnoise.send('!addroster ' + cleannick)
+            #await botnoise.send('!addroster ' + cleannick)
 
         mentiontext = memberlist_to_mentionlist(members)
 
         # sleep for a second to make sure the role has gone through before sending messages that need it
         await asyncio.sleep(1)
 
-        await officersclub.send(NEWOFFICERMSG.format(mentiontext))
+        #await officersclub.send(NEWOFFICERMSG.format(mentiontext))
 
-        await botnoise.send("!whois -r -d -role 'Officer' -nick")
+        #await botnoise.send("!whois -r -d -role 'Officer' -nick")
 
         for member in members:
-            await member.remove_roles(member,cadetrole.id)
+            await member.remove_roles(cadetrole)
 
 
 def setup(bot):
