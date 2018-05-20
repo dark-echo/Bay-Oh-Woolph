@@ -36,7 +36,7 @@ class UpdateRoster:
     @commands.command()
     @commands.has_role('Leadership')
     @asyncio.coroutine
-    def updateroster(self):
+    def updateroster(self,ctx):
         """Updates the Database"""
 
         mod = self.bot.get_channel(MOD_LOG)

@@ -36,10 +36,10 @@ description = '''Dark Echo's barkeep'''
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN.get('commandchar'), '<@&277976387543891968> '), description=description)
 
 @bot.event
-@asyncio.coroutine
-def on_ready():
+async def on_ready():
     logger.info('Logged in as %r (%r)' % (bot.user.name, bot.user.id))
-    yield from bot.change_presence(game=discord.Game(name="Serving Drinks for DE"))
+    await bot.change_presence(activity=discord.Game(name="Serving Drinks for DE"))
+
 # Everything should go above this
 if __name__ == '__main__':
 
@@ -53,5 +53,5 @@ if __name__ == '__main__':
 
     # Start the main execution loop up:
     bot.run(MAIN.get('login_token'))
-    bot.close() 
+    bot.close()
 ## Nothing goes after this comment! ##

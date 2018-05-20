@@ -29,17 +29,15 @@ class Utility:
     @commands.command()
     @asyncio.coroutine
     def gametime(self,ctx):
+        '''Displays gametime in Elite Dangerous'''
         
-        if ctx == "12h":
-            stanutcnow = _datetime.datetime.utcnow().strftime("%I:%M%p")
 
-            yield from self.bot.say("Time in Elite Dangerous(*Standard Time*): **"+stanutcnow+"**") 
 
-        elif ctx == "24h":
 
-            milutcnow = _datetime.datetime.utcnow().strftime("%H:%M:%S")
 
-            yield from self.bot.say("Time in Elite Dangerous(*Military Time*): **"+milutcnow+"**")
+        milutcnow = _datetime.datetime.utcnow().strftime("%H:%M:%S")
+
+        yield from self.bot("Time in Elite Dangerous(*Military Time*): **"+milutcnow+"**")
  
         
         

@@ -95,11 +95,11 @@ If you stay active with us for a couple of weeks and haven't heard about a promo
 
 NEWOFFICERMSG = """**<:echoBlue:230423421983522816> Welcome to Dark Echo's Officer's Club, {0}!**
 
-Dark Echo <@&146724062301913088> believe that you are an asset to this organization, and has promoted you to a full member (Officer).
+Dark Echos Dark Council believe that you are an asset to this organization, and has promoted you to a full member (Officer).
 
 Optional but traditional and highly recommended: Please bring some sort of rare beverage to Snodgrass Orbital in Disci and share a screenshot of that run on the forums and/or in <#173953415280328704>.
 
-A <@&235466370316238848> will update your forum permissions. Once your forum permissions are set up, make sure to:
+A Dark Council Member will update your forum permissions. Once your forum permissions are set up, make sure to:
 
 If you use Inara, join us at <http://inara.cz/wing/300>.
 
@@ -116,8 +116,7 @@ class Basicpromotions:
 
     @commands.command()
     @commands.has_any_role('Leadership','Recruiter')
-    @asyncio.coroutine
-    def newpccadet(self,
+    async def newpccadet(self,ctx,
         member1  : discord.Member = None, 
         member2  : discord.Member = None, 
         member3  : discord.Member = None, 
@@ -140,7 +139,7 @@ class Basicpromotions:
         member20 : discord.Member = None ):
         """Get new PC platform Cadet started."""
 
-        yield from self.bot.type()
+        await ctx.trigger_typing()
 
         # pull all the arguments into an array
         argmembers = [member1, member2, member3, member4, member5, member6, member7, member8, member9, member10, member11, member12, member13, member14, member15, member16, member17, member18, member19, member20 ]
@@ -155,21 +154,19 @@ class Basicpromotions:
 
         for member in members:
             try:
-                yield from self.bot.add_roles(member,cadetrole,memrole,pcrole)
+                await self.bot.add_roles(member,cadetrole,memrole,pcrole)
             except Exception as e:
-                yield from self.bot.say('Unable to set Officer role.')
+                await ctx.send('Unable to set Officer role.')
 
         mentiontext = memberlist_to_mentionlist(members)
 
-        cadetsmess = self.bot.get_channel(CADETS_MESS)
-
-        yield from self.bot.send_message(cadetsmess,NEWPCCADETMSG.format(mentiontext))
-        yield from self.bot.say('Go check out <#{}>, '.format(CADETS_MESS) + mentiontext + '.')
+        cadetsmess = self.bot.get_channel(int(CADETS_MESS))
+        await cadetsmess.send(NEWPCCADETMSG.format(mentiontext))
+        await ctx.send('Go check out <#{}>, '.format(CADETS_MESS) + mentiontext + '.')
 
     @commands.command()
     @commands.has_any_role('Leadership','Recruiter')
-    @asyncio.coroutine
-    def newps4cadet(self,
+    async def newps4cadet(self, ctx,
         member1  : discord.Member = None, 
         member2  : discord.Member = None, 
         member3  : discord.Member = None, 
@@ -189,10 +186,11 @@ class Basicpromotions:
         member17 : discord.Member = None, 
         member18 : discord.Member = None, 
         member19 : discord.Member = None, 
-        member20 : discord.Member = None ):
+        member20 : discord.Member = None):
+
         """Get new Playstation4 platform Cadet started."""
 
-        yield from self.bot.type()
+        await ctx.trigger_typing()
 
         # pull all the arguments into an array
         argmembers = [member1, member2, member3, member4, member5, member6, member7, member8, member9, member10, member11, member12, member13, member14, member15, member16, member17, member18, member19, member20 ]
@@ -208,23 +206,20 @@ class Basicpromotions:
 
         for member in members:
             try:
-                yield from self.bot.add_roles(member,cadetrole,memrole,ps4role,ps4cadet)
+                await self.bot.add_roles(member,cadetrole,memrole,ps4role,ps4cadet)
             except Exception as e:
-                yield from self.bot.say('Unable to set Officer role.')
+                await self.bot.say('Unable to set Officer role.')
 
         mentiontext = memberlist_to_mentionlist(members)
 
-        cadetsmess = self.bot.get_channel(CADETS_MESS)
-        ps4room    = self.bot.get_channel(PS4_ROOM)
+        cadetsmess = self.bot.get_channel(int(CADETS_MESS))
 
-        yield from self.bot.send_message(cadetsmess,NEWPS4CADETMSG.format(mentiontext))
-        yield from self.bot.send_message(ps4room,'<@&269222564826447872> Please send an in-game friend request to ' + mentiontext)
-        yield from self.bot.say('Go check out <#{}>, '.format(CADETS_MESS) + mentiontext + '.')
+        await cadetsmess.send(NEWPS4CADETMSG.format(mentiontext))
+        await ctx.send('Go check out <#{}>, '.format(CADETS_MESS) + mentiontext + '.')
       
     @commands.command()
     @commands.has_any_role('Leadership','Recruiter')
-    @asyncio.coroutine
-    def newxboxcadet(self,
+    async def newxboxcadet(self, ctx,
         member1  : discord.Member = None,
         member2  : discord.Member = None,
         member3  : discord.Member = None,
@@ -247,7 +242,7 @@ class Basicpromotions:
         member20 : discord.Member = None ):
         """Get new xbox  platform Cadet started."""
 
-        yield from self.bot.type()
+        await ctx.trigger_typing()
 
         # pull all the arguments into an array
         argmembers = [member1, member2, member3, member4, member5, member6, member7, member8, member9, member10, member11, member12, member13, member14, member15, member16, member17, member18, member19, member20 ]
@@ -263,25 +258,23 @@ class Basicpromotions:
 
         for member in members:
             try:
-                yield from self.bot.add_roles(member,cadetrole,memrole,xboxrole,xboxcadet)
+                await self.bot.add_roles(member,cadetrole,memrole,xboxrole,xboxcadet)
             except Exception as e:
-                yield from self.bot.say('Unable to set Officer role.')
+                await self.bot.say('Unable to set Officer role.')
 
         mentiontext = memberlist_to_mentionlist(members)
 
-        cadetsmess = self.bot.get_channel(CADETS_MESS)
-        xboxroom    = self.bot.get_channel(XBOX_ROOM)
+        cadetsmess = self.bot.get_channel(int(CADETS_MESS))
 
-        yield from self.bot.send_message(cadetsmess,NEWXBOXCADETMSG.format(mentiontext))
-        yield from self.bot.send_message(xboxroom,'<@&161285579894554635> Please send an in-game friend request to ' + mentiontext)
-        yield from self.bot.say('Go check out <#{}>, '.format(CADETS_MESS) + mentiontext + '.')
+
+        await cadetsmess.send(NEWXBOXCADETMSG.format(mentiontext))
+        await ctx.send('Go check out <#{}>, '.format(CADETS_MESS) + mentiontext + '.')
 
   
 
     @commands.command()
     @commands.has_role('Leadership')
-    @asyncio.coroutine
-    def newofficer(self,
+    async def newofficer(self, ctx,
         member1  : discord.Member = None, 
         member2  : discord.Member = None, 
         member3  : discord.Member = None, 
@@ -304,7 +297,7 @@ class Basicpromotions:
         member20 : discord.Member = None ):
         """Give intro message to new officer and assign them Officer role."""
 
-        yield from self.bot.type()
+        await ctx.trigger_typing()
 
         # pull all the arguments into an array
         argmembers = [member1, member2, member3, member4, member5, member6, member7, member8, member9, member10, member11, member12, member13, member14, member15, member16, member17, member18, member19, member20 ]
@@ -313,31 +306,31 @@ class Basicpromotions:
         filter(None,argmembers)
         members = [i for i in argmembers if i is not None]
 
-        officerrole = discord.Object(id=ROLE_OFFICER)
-        cadetrole = discord.Object(id=ROLE_CADET)
-        officersclub = self.bot.get_channel(OFFICERS_CLUB)
-        botnoise = self.bot.get_channel(BOT_NOISE)
+        officerrole = discord.utils.get(ctx.guild.roles, name="Officer")
+        cadetrole = discord.utils.get(ctx.guild.roles, name="Cadet")
+        botnoise = self.bot.get_channel(int(BOT_NOISE))
+        officersclub = self.bot.get_channel(int(OFFICERS_CLUB))
         
         for member in members:
             try:
-                yield from self.bot.add_roles(member,officerrole)
+                await member.add_roles(officerrole.id)
             except Exception as e:
-                yield from self.bot.say('Unable to set Officer role.')
+                await ctx.send('Unable to set Officer role.')
 
             cleannick = member_to_clean_nick(member)
-            yield from self.bot.send_message(botnoise, '!addroster ' + cleannick)
+            await botnoise.send('!addroster ' + cleannick)
 
         mentiontext = memberlist_to_mentionlist(members)
 
         # sleep for a second to make sure the role has gone through before sending messages that need it
-        yield from asyncio.sleep(1)
+        await asyncio.sleep(1)
 
-        yield from self.bot.send_message(officersclub,NEWOFFICERMSG.format(mentiontext))
+        await officersclub.send(NEWOFFICERMSG.format(mentiontext))
 
-        yield from self.bot.send_message(botnoise,"!whois -r -d -role 'Officer' -nick")
+        await botnoise.send("!whois -r -d -role 'Officer' -nick")
 
         for member in members:
-            yield from self.bot.remove_roles(member,cadetrole)
+            await member.remove_roles(member,cadetrole.id)
 
 
 def setup(bot):
