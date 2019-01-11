@@ -17,7 +17,7 @@ class Config:
     MAIN = config['MAIN']
     
     # pull debug level from config
-    debug = MAIN.getint('debug',0)
+    debug = MAIN.getint('debug',3)
 
     # Set up log level based on debug level
     if debug >= 3:
