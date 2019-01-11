@@ -33,16 +33,14 @@ NEWPCCADETMSG = """**Welcome to Dark Echo, {0}!**
 
 -->Please read and make sure you understand the channel structure in <#382677822436671490>. 
 
-1. If you use Inara, join us at http://inara.cz/wing/300
-2. In the game, under "Friends and Private Groups", request membership in the "Dark Echo" private group and send "Dark Echo" a friend request.
-3. Send in-game friend requests to the Echoes you see currently active on Discord and/or via in the in-game private group.
+1. If you use Inara, join us at <http://inara.cz/wing/300>
+2. In the game, apply to the "Dark Echo" squadron.
+3. Send in-game friend requests to the Echoes you see currently active on Discord and/or via in the in-game squadron.
 4. Check <#161529165223428096> for current priorities.
 5. Move your primary base of operations (any additional ships, etc) to Snodgrass Orbital in Disci.
-6. Set your ship id to [ECHO] or put [ECHO] in your ship name, whichever you prefer. 
+6. Join "Dark Echo" private group.
 
-Note: You cannot get to Disci in a starter sidewinder.  You need 9.5LY jump range.  Upgrade Sidewinder or Eagle from "E" to "D"; or use a Hauler. If you're still having trouble, talk to us and somebody can help.
-
-Make sure you get that forum account set up, since that's what we use to share information. Also check your welcome email, there is an optional and yet fun way to make your trip to Disci worthwhile.
+Note: You cannot get to Disci in a starter sidewinder.  You need 9.5LY jump range.  Upgrade from "E" to "D". We can help if you need it.
 
 Please set an avatar image in Discord, as it greatly helps with telling people apart when using the in-game overlay.
 
