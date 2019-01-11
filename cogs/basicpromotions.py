@@ -31,16 +31,17 @@ NEWPCCADETMSG = """**Welcome to Dark Echo, {0}!**
 
 **<:echoBlue:230423421983522816> Here are the basic steps to get started with Dark Echo: <:echoBlue:230423421983522816>**
 
--->Please read and make sure you understand the channel structure in <#382677822436671490>. 
+-->Please read and make sure you understand the channel structure in <#146723400671428608>. 
 
 1. If you use Inara, join us at <http://inara.cz/wing/300>
 2. In the game, apply to the "Dark Echo" squadron.
 3. Send in-game friend requests to the Echoes you see currently active on Discord and/or via in the in-game squadron.
 4. Check <#161529165223428096> for current priorities.
 5. Move your primary base of operations (any additional ships, etc) to Snodgrass Orbital in Disci.
-6. Join "Dark Echo" private group.
+6. Join the "Dark Echo" private group.
 
 Note: You cannot get to Disci in a starter sidewinder.  You need 9.5LY jump range.  Upgrade from "E" to "D". We can help if you need it.
+Check your welcome email, there is an optional and yet fun way to make your trip to Disci worthwhile.
 
 Please set an avatar image in Discord, as it greatly helps with telling people apart when using the in-game overlay.
 
@@ -51,7 +52,7 @@ NEWPS4CADETMSG = """**Welcome to Dark Echo, {0}!**
 
 **<:echoBlue:230423421983522816> Here are the basic steps to get started with Dark Echo: <:echoBlue:230423421983522816>**
 
--->Please read and make sure you understand the channel structure <#382677822436671490>.
+-->Please read and make sure you understand the channel structure <#146723400671428608>.
 
 1. If you use Inara, join us at http://inara.cz/wing/300
 2. Send a PSN friend request to "Elite-DarkEcho".
@@ -63,7 +64,7 @@ NEWPS4CADETMSG = """**Welcome to Dark Echo, {0}!**
 
 Note: You cannot get to Disci in a starter sidewinder.  You need 9.5LY jump range.  Upgrade Sidewinder or Eagle from "E" to "D"; or use a Hauler. If you're still having trouble, talk to us and somebody can help.
 
-Make sure you get that forum account set up, since that's what we use to share information. Also check your welcome email, there is an optional and yet fun way to make your trip to Disci worthwhile.
+Check your welcome email, there is an optional and yet fun way to make your trip to Disci worthwhile.
 
 If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the Leadership.
 """
@@ -72,7 +73,7 @@ NEWXBOXCADETMSG = """**Welcome to Dark Echo, {0}!**
 
 **<:echoBlue:230423421983522816> Here are the basic steps to get started with Dark Echo: <:echoBlue:230423421983522816>**
 
--->Please read and make sure you understand the channel structure in <#382677822436671490>.
+-->Please read and make sure you understand the channel structure in <#146723400671428608>.
 
 
 1. If you use Inara, join us at http://inara.cz/wing/300
@@ -86,7 +87,7 @@ NEWXBOXCADETMSG = """**Welcome to Dark Echo, {0}!**
 
 Note: You cannot get to Disci in a starter sidewinder.  You need 9.5LY jump range.  Upgrade Sidewinder or Eagle from "E" to "D"; or use a Hauler. If you're still having trouble, talk to us and somebody can help.
 
-Make sure you get that forum account set up, since that's what we use to share information. Also check your welcome email, there is an optional and yet fun way to make your trip to Disci worthwhile.
+Also check your welcome email, there is an optional and yet fun way to make your trip to Disci worthwhile.
 
 If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the Leadership.
 """
@@ -100,8 +101,6 @@ Optional but traditional and highly recommended: Please bring some sort of rare 
 A Dark Council Member will update your forum permissions. Once your forum permissions are set up, make sure to:
 
 If you use Inara, join us at <http://inara.cz/wing/300>.
-
-Have you checked out all the useful stuff in the forums?
 
 
 """
