@@ -19,7 +19,7 @@ class Alerts:
     def __init__(self, bot):
         self.bot = bot
 
-''' Commented out for testing 
+
     async def on_member_join(self, member):
         welcomeroom = self.bot.get_channel(int(WELCOME_ROOM))
         await welcomeroom.send("Salutations {0.mention}! Welcome to Dark Echo's Discord server. Please speak up and a <@&174254896260972544> or <@&146724062301913088> will help you shortly.".format(member))
@@ -30,6 +30,6 @@ class Alerts:
         msg = '<{0.mention} left.'
 
         await alertroom.send(msg.format(member))
-'''     
+        
 def setup(bot):
     bot.add_cog(Alerts(bot))
