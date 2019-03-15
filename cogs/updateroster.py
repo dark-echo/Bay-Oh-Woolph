@@ -3,7 +3,7 @@ from utils import *
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import *
-from member import Base, Member, Rank
+from member import Base, Member
 from utility.dbproc import Baydb
 from bayohwoolph import bot
 import discord
@@ -35,19 +35,17 @@ class UpdateRoster:
 
     @commands.command()
     @commands.has_role('Leadership')
-    async def updateroster(self,ctx):
+    async def rosterupdate(self,ctx):
         """Updates the Database"""
+        
+        await ctx.trigger_typing()
 
         mod = self.bot.get_channel(int(MOD_LOG))
-
         memberrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_MEMBER))
 
         count = 0
         # Intialize array
         listOfMembers = []
-
-        await ctx.invoke_typing()
-
         
         # Add members to array
         for themember in self.bot.get_all_members():
@@ -55,10 +53,10 @@ class UpdateRoster:
             if arole:
                 if arole[0].id == memberrole.id:
                     listOfMembers.append(
-                        Member(int(themember.id), str(themember.name), str(themember.nick),str(themember.top_role),int(themember.top_role.id)))
+                        Member(int(themember.id), str(themember.name), str(themember.nick),str(themember.top_role),int(themember.top_role.id),(themember.joined_at)))
 
         for amember in listOfMembers:
-            q = session.query(exists().where(Member.id == amember.id)).scalar()
+            q = session.query(exists().where(Member.id == amember.id))
             if q:
                 session.merge(amember)
                 # Rework and put this in a seperate command when points have to be loaded in due to manual rank change.
@@ -88,7 +86,7 @@ class UpdateRoster:
     async def on_message(self,ctx, message):
         mod = self.bot.get_channel(int(MOD_LOG))
 
-        if message.content.startswith('$new'):
+        if message.content.startswith('??new'):
             await asyncio.sleep(5)
             memberrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_MEMBER))
 
@@ -102,7 +100,7 @@ class UpdateRoster:
                 if arole:
                     if arole[0].id == memberrole.id:
                         listOfMembers.append(
-                            Member(int(themember.id), str(themember.name), str(themember.nick), str(themember.top_role),int(themember.top_role.id)))
+                            Member(int(themember.id), str(themember.name), str(themember.nick), str(themember.top_role),int(themember.top_role.id),(themember.joined_at)))
 
             for amember in listOfMembers:
                 q = session.query(exists().where(Member.id == amember.id)).scalar()

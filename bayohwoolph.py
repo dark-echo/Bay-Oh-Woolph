@@ -29,8 +29,7 @@ MAIN = Config.MAIN
 debug = Config.debug
 
 # Create global logger object
-logger = logging.getLogger('bayohwoolph')
-    
+logger = logging.getLogger('bayohwoolph')    
 description = '''Dark Echo's barkeep'''
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN.get('commandchar'), '<@&277976387543891968> '), description=description)
@@ -38,7 +37,8 @@ bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN.get('commandch
 @bot.event
 async def on_ready():
     logger.info('Logged in as %r (%r)' % (bot.user.name, bot.user.id))
-    await bot.change_presence(activity=discord.Game(name="Serving Drinks for DE"))
+    await bot.change_presence(activity=discord.Game(name="Undergoing Maintenance"),
+                                                    status=discord.Status('dnd'))
 
 # Everything should go above this
 if __name__ == '__main__':
