@@ -10,7 +10,7 @@ import discord
 import asyncio
 import logging
 
-import logging
+import datetime
 logger = logging.getLogger('bayohwoolph.cogs.updateroster')
 
 from config import Config
@@ -55,19 +55,12 @@ class UpdateRoster:
             if arole:
                 if arole[0].id == memberrole.id:
                     listOfMembers.append(
-                        Member(int(themember.id), str(themember.name), str(themember.nick),str(themember.top_role),int(themember.top_role.id)))
+                        Member(int(themember.id), str(themember.name), str(themember.nick),str(themember.top_role),int(themember.top_role.id),(themember.joined_at)))
 
         for amember in listOfMembers:
             q = session.query(exists().where(Member.id == amember.id)).scalar()
             if q:
                 session.merge(amember)
-                # Rework and put this in a seperate command when points have to be loaded in due to manual rank change.
-                ''' stmt = update(Member). \
-                        where(Member.id == amember.id). \
-                        values(points=(select([Rank.pointValue])).where(
-                        Member.rankId == Rank.rankId and Member.role != "Cadet" and Member.points == 0 | Member.points == null))
-
-                    conn.execute(stmt) '''
             else:
                 session.add(amember)
                 count = count + 1
@@ -102,7 +95,7 @@ class UpdateRoster:
                 if arole:
                     if arole[0].id == memberrole.id:
                         listOfMembers.append(
-                            Member(int(themember.id), str(themember.name), str(themember.nick), str(themember.top_role),int(themember.top_role.id)))
+                            Member(int(themember.id), str(themember.name), str(themember.nick), str(themember.top_role),int(themember.top_role.id),themember.joined_at))
 
             for amember in listOfMembers:
                 q = session.query(exists().where(Member.id == amember.id)).scalar()
@@ -128,6 +121,18 @@ class UpdateRoster:
             session.close()
             conn.close()
 
+            
+    @commands.command()
+    @commands.has_role('Leadership')
+    async def cadetcheck(self,ctx):
+       """Check for new cadets to be promoted """
+       await ctx.send("Cadets to be promoted:")
+       stmt = select([Member.globalName,Member.nickname,Member.role,Member.joinDate]).where(Member.role=='Cadet')
+       result = conn.execute(stmt) 
+       for row in result:
+             await ctx.send(row) 
+      
+        
 
 def setup(bot):
     bot.add_cog(UpdateRoster(bot))

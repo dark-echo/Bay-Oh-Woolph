@@ -24,16 +24,18 @@ class Member(Base):
     role = Column(String(250), nullable=True)
     points = Column(Integer, nullable=True, default=0)
     rankId = Column (Integer, ForeignKey('rank.rankId'))
+    joinDate = Column (DateTime, nullable=True)
     checkInDate = Column (DateTime, nullable=True)
     nextDate = Column (DateTime, nullable=True)
     
 
-    def __init__(self,id,globalAccountName,serverNickname,role,rankId):
+    def __init__(self,id,globalAccountName,serverNickname,role,rankId,joinDate):
         self.id = id
         self.globalName = globalAccountName
         self.nickname = serverNickname
         self.role = role
         self.rankId = rankId
+        self.joinDate = joinDate
 
 
 #Display member method.
