@@ -1,8 +1,5 @@
 # Project specific stuff
 bayohwoolph.local.ini
-cogs/alerts.py
-config.py
-bayohwoolph.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
