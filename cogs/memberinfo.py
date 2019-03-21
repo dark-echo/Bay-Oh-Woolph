@@ -3,7 +3,7 @@ from utils import *
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import *
-from member import Base, Member, Rank
+from member import Base, Member
 from utility.dbproc import Baydb
 from bayohwoolph import bot
 import discord
