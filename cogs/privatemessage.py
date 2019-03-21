@@ -9,11 +9,11 @@ logger = logging.getLogger('bayohwoolph.cogs.privatemessage')
 
 from config import Config 
 
-UPDATEROSTER = Config.config['UPDATEROSTER']
+DEFAULT= Config.config['DEFAULT']
 
-ROLE_MEMBER = UPDATEROSTER['ROLE_MEMBER']
+ROLE_MEMBER = DEFAULT['ROLE_MEMBER']
 
-MOD_LOG = UPDATEROSTER['MOD_LOG']
+MOD_LOG = DEFAULT['MOD_LOG']
 
 class PrivateMessage: 
 
