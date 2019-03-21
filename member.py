@@ -23,7 +23,7 @@ class Member(Base):
     nickname = Column(String(250), nullable=True)
     role = Column(String(250), nullable=True)
     points = Column(Integer, nullable=True, default=0)
-    rankId = Column (Integer, ForeignKey('rank.rankId'))
+    rankId = Column (Integer, nullable=True)
     joinDate = Column (DateTime, nullable=True)
     checkInDate = Column (DateTime, nullable=True)
     nextDate = Column (DateTime, nullable=True)
@@ -48,12 +48,6 @@ class Member(Base):
 mem1.globalAccountName="Jack"
 
 mem1.displayMember()'''
-
-class Rank(Base):
-    __tablename__ = 'rank'
-    rankId = Column(Integer, primary_key=True)
-    rankName = Column(String(250), nullable=True)
-    pointValue = Column(String(250), nullable=True)
 
 
 
