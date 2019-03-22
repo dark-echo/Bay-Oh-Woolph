@@ -82,10 +82,10 @@ class UpdateRoster:
 
     #Update Roster on newcadet, newpccadet, newps4cadet, newofficer, etc...
     @bot.event
-    async def on_message(self,ctx, message):
+    async def on_message(self,ctx):
         mod = self.bot.get_channel(int(MOD_LOG))
 
-        if message.content.startswith('$new'):
+        if ctx.content.startswith('$new'):
             await asyncio.sleep(5)
             memberrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_MEMBER))
 
@@ -102,7 +102,7 @@ class UpdateRoster:
                             Member(int(themember.id), str(themember.name), str(themember.nick), str(themember.top_role),int(themember.top_role.id),themember.joined_at))
 
             for amember in listOfMembers:
-                q = session.query(exists().where(Member.id == amember.id)).scalar()
+                q = session.query(exists().where(Member.id == amember.id))
                 if q:
                     session.merge(amember)
 
