@@ -6,11 +6,12 @@ from sqlalchemy import *
 from member import Base, Member
 from utility.dbproc import Baydb
 from bayohwoolph import bot
+from beautifultable import BeautifulTable
 import discord
 import asyncio
 import logging
 
-import datetime
+from datetime import datetime,timedelta
 logger = logging.getLogger('bayohwoolph.cogs.updateroster')
 
 from config import Config
@@ -22,6 +23,8 @@ MOD_LOG = UPDATEROSTER['MOD_LOG']
 
 session = Baydb.session
 conn = Baydb.conn
+table1 = BeautifulTable()
+table2 = BeautifulTable()
 
 
 #Command to Update Roster
@@ -128,13 +131,47 @@ class UpdateRoster:
     async def cadetcheck(self,ctx):
        """Check for new cadets to be promoted """
 
-       await ctx.send("Cadets to be promoted:")
-       stmt = select([Member.globalName,Member.nickname,Member.role,Member.joinDate]).where(Member.role=='Cadet')
-       result = conn.execute(stmt) 
-       for row in result:
-             await ctx.send(row)
+       count1 = 0
+       count2 = 0
+       #2 Weeks Promotion Code
+       table1.column_headers = ["**GlobalName**", "**NickName**", "**Role", "**JoinDate**"]
+       await ctx.send("Cadets to be promoted 2 Weeks Standard:")
 
-        
+       #Stmt formation for 2 weeks since joining server
+       stmt = select([Member.globalName, Member.nickname, Member.role, Member.joinDate])\
+           .where(and_ (Member.role == 'Cadet', Member.joinDate <= (datetime.now() - timedelta(14))))
+
+       result1 = conn.execute(stmt)
+
+       #Check if result rowcount  returns rows from db then process
+
+       # Iterate through result set and append to table2
+       for row in result1:
+            table.append_row(row['globalName'],row['nickname'],row['role'],str(row['joinDate']))
+            count1+=1
+
+       if count1 !=0:
+           await ctx.send(table1)
+
+       #1 Weeks Promotion Code
+       table2.column_headers = ["**GlobalName**", "**NickName**", "**Role**", "**JoinDate**"]
+       await ctx.send("Cadets to be possibly promoted 1 Week Awesome:")
+
+       #Stmt formation for 1 week since joining server
+       stmt2 = select([Member.globalName, Member.nickname, Member.role, Member.joinDate])\
+           .where(and_ (Member.role == 'Cadet', Member.joinDate <= (datetime.now() - timedelta(7))))
+       result2 = conn.execute(stmt2)
+
+       #Iterate through result set and append to table2
+       for row in result2:
+               table2.append_row([row['globalName'], row['nickname'], row['role'], str(row['joinDate'])])
+               count2+=1
+
+       ##Check if result is not empty then send.
+       if count2 !=0:
+           await ctx.send(table2)
+
+
 
 def setup(bot):
     bot.add_cog(UpdateRoster(bot))
