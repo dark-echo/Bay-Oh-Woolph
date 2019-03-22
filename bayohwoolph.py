@@ -20,7 +20,9 @@ initial_extensions = [
     'cogs.updateroster',
     'cogs.privatemessage',
     'cogs.memberinfo',
-    'cogs.utility'
+    'cogs.utility',
+    'cogs.mgmanager',
+    'cogs.games'
 ]
 
 MAIN = Config.MAIN
