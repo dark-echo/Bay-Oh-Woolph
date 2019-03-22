@@ -130,6 +130,9 @@ class UpdateRoster:
     @commands.has_role('Leadership')
     async def cadetcheck(self,ctx):
        """Check for new cadets to be promoted """
+       
+       table1 = BeautifulTable()
+       table2 = BeautifulTable()
 
        count1 = 0
        count2 = 0
