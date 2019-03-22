@@ -18,12 +18,12 @@ class Member(Base):
 
     __tablename__ = 'member'
 
-    id = Column(Integer, primary_key=True)
+    id = Column(BigInteger, primary_key=True)
     globalName = Column(String(250), nullable=False)
     nickname = Column(String(250), nullable=True)
     role = Column(String(250), nullable=True)
-    points = Column(Integer, nullable=True, default=0)
-    rankId = Column (Integer, nullable=True)
+    points = Column(BigInteger, nullable=True, default=0)
+    rankId = Column (BigInteger, nullable=True)
     joinDate = Column (DateTime, nullable=True)
     checkInDate = Column (DateTime, nullable=True)
     nextDate = Column (DateTime, nullable=True)
