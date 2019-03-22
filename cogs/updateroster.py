@@ -3,7 +3,7 @@ from utils import *
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import *
-from member import Base, Member, Rank
+from member import Base, Member
 from utility.dbproc import Baydb
 from bayohwoolph import bot
 import discord
@@ -46,7 +46,7 @@ class UpdateRoster:
         # Intialize array
         listOfMembers = []
 
-        await ctx.invoke_typing()
+
 
         
         # Add members to array
@@ -57,8 +57,9 @@ class UpdateRoster:
                     listOfMembers.append(
                         Member(int(themember.id), str(themember.name), str(themember.nick),str(themember.top_role),int(themember.top_role.id),(themember.joined_at)))
 
+        conn = Baydb.conn.connect()
         for amember in listOfMembers:
-            q = session.query(exists().where(Member.id == amember.id)).scalar()
+            q = session.query(exists().where(Member.id == amember.id))
             if q:
                 session.merge(amember)
             else:
@@ -119,19 +120,20 @@ class UpdateRoster:
                 session.rollback()
                 await mod.send("Insertion failure")
             session.close()
-            conn.close()
+
 
             
     @commands.command()
     @commands.has_role('Leadership')
     async def cadetcheck(self,ctx):
        """Check for new cadets to be promoted """
+
        await ctx.send("Cadets to be promoted:")
        stmt = select([Member.globalName,Member.nickname,Member.role,Member.joinDate]).where(Member.role=='Cadet')
        result = conn.execute(stmt) 
        for row in result:
-             await ctx.send(row) 
-      
+             await ctx.send(row)
+
         
 
 def setup(bot):
