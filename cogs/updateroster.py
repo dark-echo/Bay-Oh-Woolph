@@ -137,7 +137,7 @@ class UpdateRoster:
        count1 = 0
        count2 = 0
        #2 Weeks Promotion Code
-       table1.column_headers = ["**GlobalName**", "**NickName**", "**Role", "**JoinDate**"]
+       table1.column_headers = ["**GlobalName**", "**NickName**", "**Role**", "**JoinDate**"]
        await ctx.send("Cadets to be promoted 2 Weeks Standard:")
 
        #Stmt formation for 2 weeks since joining server
