@@ -98,8 +98,6 @@ Dark Echos Dark Council believe that you are an asset to this organization, and 
 
 Optional but traditional and highly recommended: Please bring some sort of rare beverage to Snodgrass Orbital in Disci and share a screenshot of that run on the forums and/or in <#173953415280328704>.
 
-A Dark Council Member will update your forum permissions. Once your forum permissions are set up, make sure to:
-
 If you use Inara, join us at <http://inara.cz/wing/300>.
 
 
