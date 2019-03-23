@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import *
 from member import Base, Member
-from utility.dbproc import Baydb
+from utilities.dbproc import Baydb
 import _datetime
 import discord
 import asyncio
@@ -12,7 +12,7 @@ import asyncio
 from config import Config
 
 import logging
-logger = logging.getLogger('bayohwoolph.cogs.utility')
+logger = logging.getLogger('bayohwoolph.cogs.utilities')
 
 
 

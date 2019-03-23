@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import *
 from member import Base, Member
-from utility.dbproc import Baydb
+from utilities.dbproc import Baydb
 from bayohwoolph import bot
 from beautifultable import BeautifulTable
 import discord
@@ -150,7 +150,7 @@ class UpdateRoster:
 
        # Iterate through result set and append to table2
        for row in result1:
-            table.append_row(row['globalName'],row['nickname'],row['role'],str(row['joinDate']))
+            table1.append_row([row['globalName'],row['nickname'],row['role'],str(row['joinDate'])])
             count1+=1
 
        if count1 !=0:
