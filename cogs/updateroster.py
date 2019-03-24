@@ -137,7 +137,7 @@ class UpdateRoster:
        count1 = 0
        count2 = 0
        #2 Weeks Promotion Code
-       table1.column_headers = ["**GlobalName**", "**NickName**", "**Role**", "**JoinDate**"]
+       table1.column_headers = ["GlobalName", "NickName", "Role", "JoinDate"]
        await ctx.send("Cadets to be promoted 2 Weeks Standard:")
 
        #Stmt formation for 2 weeks since joining server
@@ -153,11 +153,12 @@ class UpdateRoster:
             table1.append_row([row['globalName'],row['nickname'],row['role'],str(row['joinDate'])])
             count1+=1
 
+       str1 = "```"+str(table1)+"```"
        if count1 !=0:
-           await ctx.send(table1)
+           await ctx.send(str1)
 
        #1 Weeks Promotion Code
-       table2.column_headers = ["**GlobalName**", "**NickName**", "**Role**", "**JoinDate**"]
+       table2.column_headers = ["GlobalName", "NickName", "Role", "JoinDate"]
        await ctx.send("Cadets to be possibly promoted 1 Week Awesome:")
 
        #Stmt formation for 1 week since joining server
@@ -171,8 +172,9 @@ class UpdateRoster:
                count2+=1
 
        ##Check if result is not empty then send.
+       str2 = "```"+str(table2)+"```"
        if count2 !=0:
-           await ctx.send(table2)
+           await ctx.send(str2)
 
 
 
