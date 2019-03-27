@@ -142,7 +142,7 @@ class UpdateRoster:
 
        #Stmt formation for 2 weeks since joining server
        stmt = select([Member.globalName, Member.nickname, Member.role, Member.joinDate])\
-           .where(and_ (Member.role == 'Cadet', Member.joinDate <= (datetime.now() - timedelta(14))))
+           .where(and_ (Member.role == 'Cadet', cast(Member.joinDate,Date) <= (datetime.now().date() - timedelta(14))))
 
        result1 = conn.execute(stmt)
 
@@ -150,7 +150,7 @@ class UpdateRoster:
 
        # Iterate through result set and append to table2
        for row in result1:
-            table1.append_row([row['globalName'],row['nickname'],row['role'],str(row['joinDate'])])
+            table1.append_row([row['globalName'], row['nickname'], row['role'],str(row['joinDate'].strftime("%b %d %Y"))])
             count1+=1
 
        str1 = "```"+str(table1)+"```"
@@ -163,12 +163,12 @@ class UpdateRoster:
 
        #Stmt formation for 1 week since joining server
        stmt2 = select([Member.globalName, Member.nickname, Member.role, Member.joinDate])\
-           .where(and_ (Member.role == 'Cadet', Member.joinDate <= (datetime.now() - timedelta(7))))
+           .where(and_ (Member.role == 'Cadet', cast(Member.joinDate,Date) <= (datetime.now().date() - timedelta(7))))
        result2 = conn.execute(stmt2)
 
        #Iterate through result set and append to table2
        for row in result2:
-               table2.append_row([row['globalName'], row['nickname'], row['role'], str(row['joinDate'])])
+               table2.append_row([row['globalName'], row['nickname'], row['role'],str(row['joinDate'].strftime("%b %d %Y"))])
                count2+=1
 
        ##Check if result is not empty then send.
