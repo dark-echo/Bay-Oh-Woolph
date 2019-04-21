@@ -322,8 +322,6 @@ class Basicpromotions:
 
         await officersclub.send(NEWOFFICERMSG.format(mentiontext))
 
-        await botnoise.send("!whois -r -d -role 'Officer' -nick")
-
         for member in members:
             await member.remove_roles(cadetrole)
 
