@@ -33,7 +33,7 @@ Any questions please ping <@&551503870048862226> with your question and we will 
 
 
 
-class Multigame:
+class Multigame(commands.Cog):
 
     def __init__(self,bot):
         self.bot = bot

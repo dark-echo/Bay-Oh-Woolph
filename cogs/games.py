@@ -22,7 +22,7 @@ ROLE_MINECRAFT = MULTIGAMETAGS['ROLE_MINECRAFT']
 tags_added = """"Congrats your are the proud owner of a new game tag"""
 
 
-class Games:
+class Games(commands.Cog):
 
     def __init__(self,bot):
         self.bot = bot

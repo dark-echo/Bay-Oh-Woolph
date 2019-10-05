@@ -17,7 +17,7 @@ logger = logging.getLogger('bayohwoolph.cogs.points')
 POINTS = Config.config['POINTS']
 
 
-class Points:   
+class Points(commands.Cog):   
     """Tools for tracking rank-related 'points' for Dark Echo Members."""
 
     def __init__(self,bot):

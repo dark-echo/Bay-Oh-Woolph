@@ -28,7 +28,7 @@ table2 = BeautifulTable()
 
 
 #Command to Update Roster
-class UpdateRoster:
+class UpdateRoster(commands.Cog):
     """Admin tools for updating bot's internal roster info."""
 
     def __init__(self, bot):

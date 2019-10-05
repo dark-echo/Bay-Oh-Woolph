@@ -103,7 +103,7 @@ If you use Inara, join us at <http://inara.cz/wing/300>.
 
 """
 
-class Basicpromotions:
+class Basicpromotions(commands.Cog):
     """Leadership/Recruiter commands for promoting to basic membership roles."""
     
     def __init__(self, bot):

@@ -17,7 +17,7 @@ logger = logging.getLogger('bayohwoolph.cogs.utilities')
 
 
 
-class Utility:   
+class Utility(commands.Cog):   
     """Utility Functions"""
 
     def __init__(self,bot):

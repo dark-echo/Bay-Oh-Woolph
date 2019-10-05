@@ -26,7 +26,7 @@ conn = Baydb.conn
 
 
 #Command to Update Roster
-class MemberInfo:
+class MemberInfo(commands.Cog):
     """Admin tools for updating bot's internal roster info. WIP"""
 
     def __init__(self, bot):

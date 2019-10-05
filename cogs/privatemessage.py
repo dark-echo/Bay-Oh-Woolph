@@ -15,7 +15,7 @@ ROLE_MEMBER = DEFAULT['ROLE_MEMBER']
 
 MOD_LOG = DEFAULT['MOD_LOG']
 
-class PrivateMessage: 
+class PrivateMessage(commands.Cog): 
 
    def __init__(self,bot):
        self.bot = bot 
