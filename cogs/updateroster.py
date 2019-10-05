@@ -148,7 +148,7 @@ class UpdateRoster(commands.Cog):
 
        #Check if result rowcount  returns rows from db then process
 
-       # Iterate through result set and append to table2
+       # Iterate through result set and append to table1
        for row in result1:
             table1.append_row([row['globalName'], row['nickname'], row['role'],str(row['joinDate'].strftime("%b %d %Y"))])
             count1+=1
