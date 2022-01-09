@@ -35,9 +35,11 @@ class UpdateRoster(commands.Cog):
         self.bot = bot
     #assign bot to bayohwoolpbot
 
+    def check_if_infinite(ctx):
+        return ctx.message.author.id == 145331384162975744 
 
     @commands.command()
-    @commands.has_role('Leadership')
+    @commands.has_any_role('Leadership')
     async def updateroster(self,ctx):
         """Updates the Database"""
 
@@ -80,52 +82,7 @@ class UpdateRoster(commands.Cog):
         session.close()
         conn.close()
 
-    #Update Roster on newcadet, newpccadet, newps4cadet, newofficer, etc...
-    @bot.event
-    async def on_message(self,ctx):
-        mod = self.bot.get_channel(int(MOD_LOG))
-
-        if ctx.content.startswith('$new'):
-            await asyncio.sleep(5)
-            memberrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_MEMBER))
-
-            count = 0
-            # Intialize array
-            listOfMembers = []
-
-            # Add members to array
-            for themember in self.bot.get_all_members():
-                arole = [role for role in themember.roles if role.id == memberrole.id]
-                if arole:
-                    if arole[0].id == memberrole.id:
-                        listOfMembers.append(
-                            Member(int(themember.id), str(themember.name), str(themember.nick), str(themember.top_role),int(themember.top_role.id),themember.joined_at))
-
-            for amember in listOfMembers:
-                q = session.query(exists().where(Member.id == amember.id))
-                if q:
-                    session.merge(amember)
-
-                else:
-                    session.add(amember)
-                    count = count + 1
-
-            try:
-                session.commit()
-
-
-                if count != 0:
-                    await mod.send("DB successfully updated." + " Number of members inserted: " + str(count))
-                else:
-                    await mod.send("DB successfully updated. No new members inserted.")
-
-            except:
-                session.rollback()
-                await mod.send("Insertion failure")
-            session.close()
-
-
-            
+    #Cacet check command, prints out table of eligible promotions.        
     @commands.command()
     @commands.has_role('Leadership')
     async def cadetcheck(self,ctx):
@@ -148,7 +105,7 @@ class UpdateRoster(commands.Cog):
 
        #Check if result rowcount  returns rows from db then process
 
-       # Iterate through result set and append to table1
+       # Iterate through result set and append to table2
        for row in result1:
             table1.append_row([row['globalName'], row['nickname'], row['role'],str(row['joinDate'].strftime("%b %d %Y"))])
             count1+=1

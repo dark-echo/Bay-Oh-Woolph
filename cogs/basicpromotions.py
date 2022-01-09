@@ -41,7 +41,6 @@ NEWPCCADETMSG = """**Welcome to Dark Echo, {0}!**
 6. Join the "Dark Echo" private group.
 
 Note: You cannot get to Disci in a starter sidewinder.  You need 9.5LY jump range.  Upgrade from "E" to "D". We can help if you need it.
-Check your welcome email, there is an optional and yet fun way to make your trip to Disci worthwhile.
 
 Please set an avatar image in Discord, as it greatly helps with telling people apart when using the in-game overlay.
 
@@ -64,8 +63,6 @@ NEWPS4CADETMSG = """**Welcome to Dark Echo, {0}!**
 
 Note: You cannot get to Disci in a starter sidewinder.  You need 9.5LY jump range.  Upgrade Sidewinder or Eagle from "E" to "D"; or use a Hauler. If you're still having trouble, talk to us and somebody can help.
 
-Check your welcome email, there is an optional and yet fun way to make your trip to Disci worthwhile.
-
 If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the Leadership.
 """
 
@@ -86,8 +83,6 @@ NEWXBOXCADETMSG = """**Welcome to Dark Echo, {0}!**
 
 
 Note: You cannot get to Disci in a starter sidewinder.  You need 9.5LY jump range.  Upgrade Sidewinder or Eagle from "E" to "D"; or use a Hauler. If you're still having trouble, talk to us and somebody can help.
-
-Also check your welcome email, there is an optional and yet fun way to make your trip to Disci worthwhile.
 
 If you stay active with us for a couple of weeks and haven't heard about a promotion to Officer, please remind the Leadership.
 """
@@ -301,6 +296,7 @@ class Basicpromotions(commands.Cog):
         filter(None,argmembers)
         members = [i for i in argmembers if i is not None]
 
+        pettyofficer = discord.utils.get(ctx.guild.roles, id=533299978567680011)
         officerrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_OFFICER))
         cadetrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_CADET))
         botnoise = self.bot.get_channel(int(BOT_NOISE))
@@ -308,7 +304,7 @@ class Basicpromotions(commands.Cog):
         
         for member in members:
             try:
-                await member.add_roles(officerrole)
+                await member.add_roles(officerrole,pettyofficer)
             except Exception as e:
                 await ctx.send('Unable to set Officer role.')
 
