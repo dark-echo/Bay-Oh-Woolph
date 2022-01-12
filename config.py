@@ -9,7 +9,7 @@ logger = logging.getLogger('bayohwoolph.config')
 
 class Config:
     config = configparser.ConfigParser()
-    for inifile in [os.path.abspath('/home/bots/Bay-Oh-Woolph')+'/bayohwoolph.local.ini','bayohwoolph.ini']:
+    for inifile in [os.path.abspath('C:\Users\Zach\Documents\GitHub\Bay-Oh-Woolph')+'bayohwoolph.local.ini','bayohwoolph.ini']:
         if os.path.isfile(inifile):
             logger.info('reading config file: ' + inifile)
             config.read(inifile)
