@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import *
 from member import Base, Member
 from utilities.dbproc import Baydb
-import _datetime
+import datetime
 import discord
 import asyncio
 
@@ -34,7 +34,7 @@ class Utility(commands.Cog):
 
 
 
-        milutcnow = _datetime.datetime.utcnow().strftime("%H:%M:%S")
+        milutcnow = datetime.datetime.utcnow().strftime("%H:%M:%S")
 
         await ctx.send("Time in Elite Dangerous(*Military Time*): **"+milutcnow+"**")
  
