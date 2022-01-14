@@ -34,9 +34,10 @@ logger = logging.getLogger('bayohwoolph')
 description = '''Dark Echo's barkeep'''
 
 intents = discord.Intents.default()
+intents.members = True
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN.get('commandchar'), '<@&277976387543891968> '), description=description, intents=intents)
-intents.members = True
+
 @bot.event
 async def on_ready():
     logger.info('Logged in as %r (%r)' % (bot.user.name, bot.user.id))

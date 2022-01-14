@@ -61,7 +61,6 @@ class UpdateRoster(commands.Cog):
                 if arole[0].id == memberrole.id:
                     listOfMembers.append(
                         Member(int(themember.id), str(themember.name), str(themember.nick),str(themember.top_role),int(themember.top_role.id),(themember.joined_at)))
-
         conn = Baydb.conn.connect()
         for amember in listOfMembers:
             q = session.query(exists().where(Member.id == amember.id))
@@ -72,7 +71,7 @@ class UpdateRoster(commands.Cog):
                 count = count + 1
         try:
             session.commit()
-            if count != 0:
+            if count > 0:
                 await ctx.send("DB successfully updated." + " Number of members inserted: " + str(count))
             else:
                 await ctx.send("DB successfully updated. No new members inserted.")
