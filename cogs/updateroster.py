@@ -5,6 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import *
 from member import Base, Member
 from utilities.dbproc import Baydb
+from utils import member_to_clean_nick
 from bayohwoolph import bot
 from beautifultable import BeautifulTable
 import discord
@@ -48,6 +49,7 @@ class UpdateRoster(commands.Cog):
         memberrole = discord.utils.get(ctx.guild.roles, id=int(ROLE_MEMBER))
 
         count = 0
+        count2 = 0
         # Intialize array
         listOfMembers = []
 
@@ -60,21 +62,24 @@ class UpdateRoster(commands.Cog):
             if arole:
                 if arole[0].id == memberrole.id:
                     listOfMembers.append(
-                        Member(int(themember.id), str(themember.name), str(themember.nick),str(themember.top_role),int(themember.top_role.id),(themember.joined_at)))
+                        Member(int(themember.id), str(themember.name), str(member_to_clean_nick(themember)),str(themember.top_role),int(themember.top_role.id),(themember.joined_at)))
         conn = Baydb.conn.connect()
         for amember in listOfMembers:
             q = session.query(exists().where(Member.id == amember.id))
             if q:
                 session.merge(amember)
+                count2 += 1
             else:
                 session.add(amember)
-                count = count + 1
+                count += 1
         try:
             session.commit()
             if count > 0:
                 await ctx.send("DB successfully updated." + " Number of members inserted: " + str(count))
+            elif count2 > 0:
+                await ctx.send("DB successfully updated." + " Number of members updated: " + str(count2))
             else:
-                await ctx.send("DB successfully updated. No new members inserted.")
+                await ctx.send("DB successfully updated. No new members inserted or updated.")
         except:
             session.rollback()
             await mod.send("Insertion failure")
