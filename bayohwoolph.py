@@ -4,9 +4,7 @@ import asyncio
 import discord
 import os
 import logging
-
 from config import Config
-
 from discord.ext import commands
 
 # Our specific stuff
@@ -36,9 +34,10 @@ logger = logging.getLogger('bayohwoolph')
 description = '''Dark Echo's barkeep'''
 
 intents = discord.Intents.default()
+intents.members = True
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN.get('commandchar'), '<@&277976387543891968> '), description=description, intents=intents)
-intents.members = True
+
 @bot.event
 async def on_ready():
     logger.info('Logged in as %r (%r)' % (bot.user.name, bot.user.id))
@@ -56,6 +55,7 @@ if __name__ == '__main__':
             logger.error('Failed to load extension {}\n{}: {}'.format(extension, type(e).__name__, e))
 
     # Start the main execution loop up:
+    print(MAIN.get('login_token'))
     bot.run(MAIN.get('login_token'))
     bot.close()
 ## Nothing goes after this comment! ##
