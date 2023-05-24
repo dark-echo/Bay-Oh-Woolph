@@ -2,26 +2,15 @@
 # General libraries
 import asyncio
 import discord
+import aiohttp
 import os
 import logging
 from config import Config
-from discord.ext import commands
+from discord.ext import commands,tasks
 
-# Our specific stuff
-from utils import *
+#Utils import
+from utils import * 
 
-# "Cog" extensions loaded a little later
-initial_extensions = [
-    'cogs.basicpromotions',
-    'cogs.alerts',
-    'cogs.points',
-    'cogs.updateroster',
-    'cogs.privatemessage',
-    'cogs.rolegranttemp',
-    'cogs.utility',
-    'cogs.mgmanager',
-    'cogs.games'
-]
 
 MAIN = Config.MAIN
 
@@ -30,32 +19,36 @@ debug = Config.debug
 
 # Create global logger object
 logger = logging.getLogger('bayohwoolph')
-    
+
 description = '''Dark Echo's barkeep'''
 
-intents = discord.Intents.default()
+intents = discord.Intents.all()
 intents.members = True
+class MyBot(commands.Bot):
+    def __init__(self):
+        super().__init__(command_prefix=commands.when_mentioned_or(MAIN.get('commandchar'), '<@&277976387543891968> '), description=description, intents=intents)
+        self.initial_extensions = [
+              'cogs.basicpromotions',
+              'cogs.alerts',
+              'cogs.points',
+              'cogs.updateroster',
+              'cogs.privatemessage',
+              'cogs.utility',
+              'cogs.mgmanager',
+              'cogs.games'
+           ]
 
-bot = commands.Bot(command_prefix=commands.when_mentioned_or(MAIN.get('commandchar'), '<@&277976387543891968> '), description=description, intents=intents)
+    async def setup_hook(self):
+        for ext in self.initial_extensions:
+            await self.load_extension(ext)
 
-@bot.event
-async def on_ready():
-    logger.info('Logged in as %r (%r)' % (bot.user.name, bot.user.id))
-    await bot.change_presence(activity=discord.Game(name="Serving Drinks for DE"))
+    async def close(self):
+        await super().close()
 
-# Everything should go above this
-if __name__ == '__main__':
+    async def on_ready(self):
+        await bot.change_presence(activity=discord.Game(name="Serving Drinks for DE"))
+        print('Ready!')
 
-    # Loop through extensions and load them:
-    for extension in initial_extensions:
-        try:
-            logger.debug('Trying to load extension: ' + extension)
-            bot.load_extension(extension)
-        except Exception as e:
-            logger.error('Failed to load extension {}\n{}: {}'.format(extension, type(e).__name__, e))
+bot = MyBot()
+bot.run(MAIN.get('login_token'))
 
-    # Start the main execution loop up:
-    print(MAIN.get('login_token'))
-    bot.run(MAIN.get('login_token'))
-    bot.close()
-## Nothing goes after this comment! ##

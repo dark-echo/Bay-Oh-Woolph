@@ -36,5 +36,5 @@ class Alerts(commands.Cog):
 
         await alertroom.send(msg.format(member))
         
-def setup(bot):
-    bot.add_cog(Alerts(bot))
+async def setup(bot):
+    await bot.add_cog(Alerts(bot))

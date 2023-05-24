@@ -6,7 +6,6 @@ from sqlalchemy import *
 from member import Base, Member
 from utilities.dbproc import Baydb
 from utils import member_to_clean_nick
-from bayohwoolph import bot
 from beautifultable import BeautifulTable
 import discord
 import asyncio
@@ -139,5 +138,5 @@ class UpdateRoster(commands.Cog):
 
 
 
-def setup(bot):
-    bot.add_cog(UpdateRoster(bot))
+async def setup(bot):
+    await bot.add_cog(UpdateRoster(bot))

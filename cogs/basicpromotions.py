@@ -322,5 +322,5 @@ class Basicpromotions(commands.Cog):
             await member.remove_roles(cadetrole)
 
 
-def setup(bot):
-    bot.add_cog(Basicpromotions(bot))
+async def setup(bot):
+    await bot.add_cog(Basicpromotions(bot))

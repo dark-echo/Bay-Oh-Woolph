@@ -1,6 +1,5 @@
 from discord.ext import commands 
-from utils import * 
-from bayohwoolph import bot 
+from utils import *  
 import discord 
 import asyncio 
 import logging 
@@ -59,7 +58,7 @@ class PrivateMessage(commands.Cog):
            await mod.send("Message failed to deliver: "+str(member1.name))
            
 
-def setup(bot): 
-    bot.add_cog(PrivateMessage(bot)) 
+async def setup(bot): 
+    await bot.add_cog(PrivateMessage(bot)) 
 
 

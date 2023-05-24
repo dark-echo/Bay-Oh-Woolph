@@ -1,6 +1,5 @@
 from discord.ext import commands
 import discord
-from bayohwoolph import bot
 
 from config import Config
 
@@ -55,5 +54,5 @@ class Multigame(commands.Cog):
 
 
 
-def setup(bot):
-    bot.add_cog(Multigame(bot))
+async def setup(bot):
+    await bot.add_cog(Multigame(bot))
