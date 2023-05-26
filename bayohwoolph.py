@@ -24,6 +24,7 @@ description = '''Dark Echo's barkeep'''
 
 intents = discord.Intents.all()
 intents.members = True
+#Put debugging code back async style for errors.
 class MyBot(commands.Bot):
     def __init__(self):
         super().__init__(command_prefix=commands.when_mentioned_or(MAIN.get('commandchar'), '<@&277976387543891968> '), description=description, intents=intents)
