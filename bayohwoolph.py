@@ -17,7 +17,7 @@ MAIN = Config.MAIN
 # pull debug level from Config class
 debug = Config.debug
 
-# Create global logger object
+#Create global logger object
 logger = logging.getLogger('bayohwoolph')
 
 description = '''Dark Echo's barkeep'''
