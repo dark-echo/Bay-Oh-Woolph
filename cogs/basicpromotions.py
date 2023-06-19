@@ -129,7 +129,7 @@ class Basicpromotions(commands.Cog):
         member20 : discord.Member = None ):
         """Get new PC platform Cadet started."""
 
-        await ctx.trigger_typing()
+        await ctx.typing()
 
         # pull all the arguments into an array
         argmembers = [member1, member2, member3, member4, member5, member6, member7, member8, member9, member10, member11, member12, member13, member14, member15, member16, member17, member18, member19, member20 ]
@@ -180,7 +180,7 @@ class Basicpromotions(commands.Cog):
 
         """Get new Playstation4 platform Cadet started."""
 
-        await ctx.trigger_typing()
+        await ctx.typing()
 
         # pull all the arguments into an array
         argmembers = [member1, member2, member3, member4, member5, member6, member7, member8, member9, member10, member11, member12, member13, member14, member15, member16, member17, member18, member19, member20 ]
@@ -232,7 +232,7 @@ class Basicpromotions(commands.Cog):
         member20 : discord.Member = None ):
         """Get new xbox  platform Cadet started."""
 
-        await ctx.trigger_typing()
+        await ctx.typing()
 
         # pull all the arguments into an array
         argmembers = [member1, member2, member3, member4, member5, member6, member7, member8, member9, member10, member11, member12, member13, member14, member15, member16, member17, member18, member19, member20 ]
@@ -287,7 +287,7 @@ class Basicpromotions(commands.Cog):
         member20 : discord.Member = None ):
         """Give intro message to new officer and assign them Officer role."""
 
-        await ctx.trigger_typing()
+        await ctx.typing()
 
         # pull all the arguments into an array
         argmembers = [member1, member2, member3, member4, member5, member6, member7, member8, member9, member10, member11, member12, member13, member14, member15, member16, member17, member18, member19, member20 ]
